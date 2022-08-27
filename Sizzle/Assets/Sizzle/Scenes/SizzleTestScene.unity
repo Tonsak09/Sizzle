@@ -432,6 +432,10 @@ PrefabInstance:
       propertyPath: m_AngularYZDrive.positionSpring
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1288643249644578952, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.000000009866426
@@ -442,7 +446,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_AngularYZDrive.positionSpring
-      value: 700
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643249763778524, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778525, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_AngularYMotion
@@ -474,7 +482,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778525, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_AngularYZDrive.positionSpring
-      value: 600
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250091984816, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: showGizmos
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250091984816, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: IKHintOffset.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250091984816, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: IKHintOffset.y
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250091984816, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: IKHintOffset.z
+      value: -0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: compassDirections.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: compassDirections.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: compassDirections.Array.data[0].z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: compassDirections.Array.data[1].x
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: compassDirections.Array.data[1].z
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: compassDirections.Array.data[2].x
+      value: -0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: compassDirections.Array.data[2].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: compassDirections.Array.data[3].x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250391003844, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: showGizmos
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250391003844, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: IKHintOffset.x
+      value: -0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250391003844, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: IKHintOffset.y
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250391003844, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: IKHintOffset.z
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 1614706803544236438, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_RootOrder

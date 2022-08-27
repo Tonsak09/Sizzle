@@ -224,7 +224,7 @@ Transform:
   m_Children:
   - {fileID: 2481814635793944093}
   m_Father: {fileID: 1288643250022457744}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510897306825817775
 GameObject:
@@ -994,7 +994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1288643249644578951
 Transform:
   m_ObjectHideFlags: 0
@@ -1002,12 +1002,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288643249644578952}
-  m_LocalRotation: {x: -0.35488358, y: -0.5729844, z: 0.62506723, w: -0.3937481}
-  m_LocalPosition: {x: 0, y: 0, z: 0.08588878}
+  m_LocalRotation: {x: -0.3548836, y: -0.57298434, z: 0.6250673, w: -0.3937481}
+  m_LocalPosition: {x: 0, y: 0, z: 0.085888766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1288643250022457744}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1288643249651790172
 GameObject:
@@ -1129,8 +1129,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1288643250091984819}
-  - {fileID: 1288643249644578951}
   - {fileID: 4473049581716703381}
+  - {fileID: 1288643249644578951}
   m_Father: {fileID: 2538376175108143259}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1340,6 +1340,7 @@ MonoBehaviour:
   rayCheckStartOffset: {x: 0, y: -0.03, z: 0.1}
   footStartOffset: {x: 0, y: -0.45, z: 0.21}
   IKHintOffset: {x: 0, y: -0.15, z: -0.16}
+  compassDirections: []
   showGizmos: 0
 --- !u!1 &1288643250091984820
 GameObject:
@@ -1442,6 +1443,7 @@ MonoBehaviour:
   rayCheckStartOffset: {x: 0.05, y: 0, z: -0.14}
   footStartOffset: {x: 0, y: -0.45, z: 0}
   IKHintOffset: {x: 0, y: -0.12, z: 0.13}
+  compassDirections: []
   showGizmos: 0
 --- !u!1 &1288643250127403162
 GameObject:
@@ -1604,6 +1606,7 @@ MonoBehaviour:
   rayCheckStartOffset: {x: 0, y: -0.03, z: 0.1}
   footStartOffset: {x: 0, y: -0.45, z: 0.21}
   IKHintOffset: {x: 0, y: -0.15, z: -0.16}
+  compassDirections: []
   showGizmos: 1
 --- !u!1 &1288643250248906569
 GameObject:
@@ -1796,6 +1799,7 @@ MonoBehaviour:
   rayCheckStartOffset: {x: 0.05, y: 0, z: -0.14}
   footStartOffset: {x: 0, y: -0.45, z: 0}
   IKHintOffset: {x: 0, y: -0.12, z: 0.13}
+  compassDirections: []
   showGizmos: 0
 --- !u!1 &1348359377632397465
 GameObject:

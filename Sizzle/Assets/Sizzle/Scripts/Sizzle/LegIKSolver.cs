@@ -26,8 +26,11 @@ public class LegIKSolver : MonoBehaviour
     [SerializeField] Vector3 rayCheckStartOffset;
     [Tooltip("Where the leg tries to put the foot once initialized ")] 
     [SerializeField] Vector3 footStartOffset;
-    [Tooltip("")] 
+    [Tooltip("In what directionthe joint will bend towards")] 
     [SerializeField] Vector3 IKHintOffset;
+
+    [Header("Leg Compass")]
+    [SerializeField] Vector3[] compassDirections;
     
 
     /// <summary>
@@ -40,7 +43,7 @@ public class LegIKSolver : MonoBehaviour
     /// <summary>
     /// The position where the the leg begins 
     /// </summary>
-    private Vector3 Root 
+    private Vector3 RootPos 
     { get 
         { 
             return root.position; 
@@ -54,7 +57,7 @@ public class LegIKSolver : MonoBehaviour
     { 
         get 
         {
-            return Root +
+            return RootPos +
                 axisVectorForward * footStartOffset.z +
                 axisVectorRight * footStartOffset.x +
                 axisVectorUp * footStartOffset.y;
@@ -67,7 +70,7 @@ public class LegIKSolver : MonoBehaviour
     private Vector3 offsetedIKHint 
     { get 
         { 
-            return Root + 
+            return RootPos + 
                 axisVectorForward* IKHintOffset.z +
                 axisVectorRight * IKHintOffset.x +
                 axisVectorUp * IKHintOffset.y;
@@ -81,7 +84,7 @@ public class LegIKSolver : MonoBehaviour
     { 
         get 
         { 
-            return Root +
+            return RootPos +
                 axisVectorForward* rayCheckStartOffset.z +
                 axisVectorRight * rayCheckStartOffset.x +
                 axisVectorUp * rayCheckStartOffset.y;
@@ -176,22 +179,39 @@ public class LegIKSolver : MonoBehaviour
         {
             //Vector3 difference = axisVector.normalized - Vector3.forward;
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(rayCheckStart, 0.05f);
+            Gizmos.DrawSphere(rayCheckStart, 0.02f);
 
             Gizmos.color = Color.green;
-            Gizmos.DrawSphere(startFootPosition, 0.05f);
+            Gizmos.DrawSphere(startFootPosition, 0.02f);
 
             Gizmos.color = Color.magenta;
-            Gizmos.DrawSphere(offsetedIKHint, 0.05f);
+            Gizmos.DrawSphere(offsetedIKHint, 0.02f);
 
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(target, 0.1f);
+            Gizmos.DrawSphere(target, 0.01f);
 
             RaycastHit hit;
             // Checking for new position 
             if (Physics.Raycast(rayCheckStart, Vector3.down, out hit, MaxDisFromFloor, mask))
             {
                 Gizmos.DrawCube(hit.point, new Vector3(0.1f, 0.1f, 0.1f));
+            }
+
+
+            if(compassDirections != null)
+            {
+                Gizmos.color = Color.yellow;
+                // Draw each vector as if 
+                foreach (Vector3 dir in compassDirections)
+                {
+                    // Get direction as if root is parent 
+                    Vector3 worldDir = forwardBone.TransformDirection(dir);
+
+                    // Change to world coords 
+
+                    // Draw point 
+                    Gizmos.DrawWireSphere(RootPos + worldDir * dir.magnitude, 0.01f);
+                }
             }
 
         }    

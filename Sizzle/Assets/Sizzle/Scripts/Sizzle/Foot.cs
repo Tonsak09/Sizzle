@@ -24,6 +24,5 @@ public class Foot : MonoBehaviour
         Physics.Raycast(this.transform.position, Vector3.down, out hit, 10, terrain);
 
         this.transform.forward = -hit.normal;
-        print(hit.normal);
     }
 }
