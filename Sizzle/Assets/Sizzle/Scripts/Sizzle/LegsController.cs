@@ -42,6 +42,8 @@ public class LegsController : MonoBehaviour
         backRight.TryMove(footSpeedMoving, footSpeedNotMoving);
         backLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
         frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);
+
+
         
     }
 
