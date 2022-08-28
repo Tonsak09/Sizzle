@@ -220,18 +220,14 @@ public static class Maths
     /// Get a set of points that form a cube from origin with a specified size
     /// </summary>
     /// <returns></returns>
-    public static Vector3[] FormCubeFromSize(Vector3 size)
+    public static Vector3[] FormPlaneFromSize(Vector2 size)
     {
         return new Vector3[]
         {
-            new Vector3(size.x / 2, size.y / 2, size.z / 2),
-            new Vector3(),
-            new Vector3(),
-            new Vector3(),
-            new Vector3(),
-            new Vector3(),
-            new Vector3(),
-            new Vector3()
+            new Vector3(size.x / 2, 0, size.y / 2),
+            new Vector3(size.x / 2, 0, -size.y / 2),
+            new Vector3(-size.x / 2, 0, -size.y / 2),
+            new Vector3(-size.x / 2, 0, size.y / 2)
         };
     }
 }

@@ -22,7 +22,7 @@ public class LegIKSolver : MonoBehaviour
     [SerializeField] float stepDistance;
     [SerializeField] float footOffset;
     [Tooltip("What are the dimensions of the cube that a new position can be in without causing the leg to be able to move")]
-    [SerializeField] Vector3 rangeAreaBeforeMove;
+    [SerializeField] Vector2 rangeAreaBeforeMove;
 
     [Header("Offsets")]
     [Tooltip("The position where a raycast will check down to see where the foot should be put next")] 
@@ -230,19 +230,37 @@ public class LegIKSolver : MonoBehaviour
                     Gizmos.DrawWireSphere(RootPos + worldDir * dir.magnitude, 0.01f);
                 }
             }
+
+            // Updates rangeAreaBeforeMoving even when not in game 
             if(!Application.isPlaying)
             {
                 target = hit.point + hit.normal * footOffset;
-
             }
 
-            print(forwardBone.eulerAngles.y);
+            // Represents where a downward newPos can be and not update the foot to move
+            Vector3[] areaPlane = Maths.FormPlaneFromSize(rangeAreaBeforeMove);
+            Vector3[] proccessedAreaPlane = new Vector3[areaPlane.Length];
 
-            Quaternion rot = foot.rotation;
-            rot *= Quaternion.Euler(Vector3.forward * rotValueTest);
-            Matrix4x4 rotationMatrix = Matrix4x4.TRS(target, rot, Vector3.one);
-            Gizmos.matrix = rotationMatrix;
-            Gizmos.DrawWireCube(Vector3.zero, rangeAreaBeforeMove);
+            for (int i = 0; i < areaPlane.Length; i++)
+            {
+                proccessedAreaPlane[i] = forwardBone.TransformDirection(areaPlane[i]);
+                proccessedAreaPlane[i] = Vector3.ProjectOnPlane(proccessedAreaPlane[i], Vector3.up);
+            }
+
+            for (int i = 0; i < proccessedAreaPlane.Length; i++)
+            {
+                Gizmos.DrawSphere(foot.position + proccessedAreaPlane[i], 0.01f);
+
+                // Draws line connceted to next in line 
+                if(i < areaPlane.Length - 1)
+                {
+                    Gizmos.DrawLine(foot.position + proccessedAreaPlane[i], foot.position + proccessedAreaPlane[i + 1]);
+                }
+                else
+                {
+                    Gizmos.DrawLine(foot.position + proccessedAreaPlane[i], foot.position + proccessedAreaPlane[0]);
+                }
+            }
         }    
     }
 }
