@@ -14,24 +14,29 @@ public class LegIKSolver : MonoBehaviour
     [Header("Bone transform references")]
     [SerializeField] Transform forwardBone;
     [SerializeField] Transform root;
+    [SerializeField] Transform foot;
 
     [Header("Step variables")]
     [SerializeField] float stepHeight;
     [SerializeField] float MaxDisFromFloor;
     [SerializeField] float stepDistance;
     [SerializeField] float footOffset;
+    [Tooltip("What are the dimensions of the cube that a new position can be in without causing the leg to be able to move")]
+    [SerializeField] Vector3 rangeAreaBeforeMove;
 
     [Header("Offsets")]
     [Tooltip("The position where a raycast will check down to see where the foot should be put next")] 
     [SerializeField] Vector3 rayCheckStartOffset;
-    [Tooltip("Where the leg tries to put the foot once initialized ")] 
-    [SerializeField] Vector3 footStartOffset;
     [Tooltip("In what directionthe joint will bend towards")] 
     [SerializeField] Vector3 IKHintOffset;
 
     [Header("Leg Compass")]
     [SerializeField] Vector3[] compassDirections;
-    
+
+    [Header("GUI")]
+    [SerializeField] bool showGizmos;
+    public float rotValueTest;
+
 
     /// <summary>
     /// The forward vector of the body section this leg is attached to 
@@ -50,19 +55,6 @@ public class LegIKSolver : MonoBehaviour
         } 
     }
 
-    /// <summary>
-    /// Where the leg tries to put the foot once initialized 
-    /// </summary>
-    private Vector3 startFootPosition 
-    { 
-        get 
-        {
-            return RootPos +
-                axisVectorForward * footStartOffset.z +
-                axisVectorRight * footStartOffset.x +
-                axisVectorUp * footStartOffset.y;
-        } 
-    }
 
     /// <summary>
     /// Where the joint should tend to bend 
@@ -91,14 +83,16 @@ public class LegIKSolver : MonoBehaviour
         } 
     }
 
+    
 
+
+    // Info for moving the limb from one spot to next 
     private Vector3 origin;
     private Vector3 target;
     private float lerp;
     private bool moving;
 
     public bool Moving { get { return moving; } }
-    public bool showGizmos;
 
     // Start is called before the first frame update
     void Start()
@@ -112,6 +106,7 @@ public class LegIKSolver : MonoBehaviour
     {
         //IKStart.position = startFootPosition;
         IKHint.position = offsetedIKHint;
+        ChooseCompassDir();
     }
 
     public void TryMove(float footSpeedMoving, float footSpeedNotMoving)
@@ -173,6 +168,31 @@ public class LegIKSolver : MonoBehaviour
         moving = false;
     }
 
+    private Vector3 ChooseCompassDir()
+    {
+        Vector3[] LocalizedCompass = GetLocalizedCompass();
+
+        return new Vector3();
+    }
+
+    private Vector3[] GetLocalizedCompass()
+    {
+        if (compassDirections != null)
+        {
+            Vector3[] newCompass = new Vector3[compassDirections.Length];
+
+            for (int i = 0; i < compassDirections.Length; i++)
+            {
+                // Get direction as if root is parent 
+                Vector3 worldDir = forwardBone.TransformDirection(compassDirections[i]);
+
+                newCompass[i] = worldDir;
+            }
+            return newCompass;
+        }
+        return null;
+    }
+
     private void OnDrawGizmos()
     {
         if(showGizmos)
@@ -181,20 +201,17 @@ public class LegIKSolver : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawSphere(rayCheckStart, 0.02f);
 
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(startFootPosition, 0.02f);
-
             Gizmos.color = Color.magenta;
-            Gizmos.DrawSphere(offsetedIKHint, 0.02f);
+            Gizmos.DrawWireSphere(offsetedIKHint, 0.02f);
 
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(target, 0.01f);
+            Gizmos.DrawSphere(target, 0.05f);
 
             RaycastHit hit;
             // Checking for new position 
             if (Physics.Raycast(rayCheckStart, Vector3.down, out hit, MaxDisFromFloor, mask))
             {
-                Gizmos.DrawCube(hit.point, new Vector3(0.1f, 0.1f, 0.1f));
+                Gizmos.DrawWireSphere(hit.point, 0.02f);
             }
 
 
@@ -213,7 +230,19 @@ public class LegIKSolver : MonoBehaviour
                     Gizmos.DrawWireSphere(RootPos + worldDir * dir.magnitude, 0.01f);
                 }
             }
+            if(!Application.isPlaying)
+            {
+                target = hit.point + hit.normal * footOffset;
 
+            }
+
+            print(forwardBone.eulerAngles.y);
+
+            Quaternion rot = foot.rotation;
+            rot *= Quaternion.Euler(Vector3.forward * rotValueTest);
+            Matrix4x4 rotationMatrix = Matrix4x4.TRS(target, rot, Vector3.one);
+            Gizmos.matrix = rotationMatrix;
+            Gizmos.DrawWireCube(Vector3.zero, rangeAreaBeforeMove);
         }    
     }
 }

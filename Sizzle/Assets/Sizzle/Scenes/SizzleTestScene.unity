@@ -501,6 +501,26 @@ PrefabInstance:
       value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: foot
+      value: 
+      objectReference: {fileID: 926633230}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: rotValueTest
+      value: 2.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: rangeAreaBeforeMove.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: rangeAreaBeforeMove.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: rangeAreaBeforeMove.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: compassDirections.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -646,6 +666,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+--- !u!4 &926633230 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4169822178651169993, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+  m_PrefabInstance: {fileID: 794217216}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1079140992
 GameObject:
   m_ObjectHideFlags: 0

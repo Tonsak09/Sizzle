@@ -215,4 +215,23 @@ public static class Maths
         Vector3 AV = value - a;
         return Vector3.Dot(AV, AB) / Vector3.Dot(AB, AB);
     }
+    
+    /// <summary>
+    /// Get a set of points that form a cube from origin with a specified size
+    /// </summary>
+    /// <returns></returns>
+    public static Vector3[] FormCubeFromSize(Vector3 size)
+    {
+        return new Vector3[]
+        {
+            new Vector3(size.x / 2, size.y / 2, size.z / 2),
+            new Vector3(),
+            new Vector3(),
+            new Vector3(),
+            new Vector3(),
+            new Vector3(),
+            new Vector3(),
+            new Vector3()
+        };
+    }
 }
