@@ -215,6 +215,11 @@ public static class Maths
         Vector3 AV = value - a;
         return Vector3.Dot(AV, AB) / Vector3.Dot(AB, AB);
     }
+
+    public static Vector2 Proj2D(Vector2 u, Vector2 v)
+    {
+        return (Vector2.Dot(u, v) / (u.magnitude * v.magnitude)) * v;
+    }
     
     /// <summary>
     /// Get a set of points that form a cube from origin with a specified size
@@ -229,5 +234,33 @@ public static class Maths
             new Vector3(-size.x / 2, 0, -size.y / 2),
             new Vector3(-size.x / 2, 0, size.y / 2)
         };
+    }
+
+    public static bool IsPointWithinRect(Vector3 point, Vector3[] rect)
+    {
+        // Turns values into easier to use 2d vectors 
+        Vector2 point2D = new Vector2(point.x, point.z);
+        Vector2[] rect2D = new Vector2[rect.Length];
+        for (int i = 0; i < rect.Length; i++)
+        {
+            rect2D[i] = new Vector2(rect[i].x, rect[i].z);
+        }
+
+        // Find lerp value between two pairs of the projected point
+        // CANNOT be diagonal lines being used 
+
+        // If the point is greater than side then it should be outta the line
+        // Do twice to check both sides
+
+        Vector2 sideA = rect[0] - rect[1];
+        Vector2 sideB = rect[2] - rect[3];
+
+        Vector2 projA = Proj2D(point2D - rect2D[1], sideA);
+        Vector2 projB = Proj2D(point2D - rect2D[3], sideB);
+
+        bool withinSideA = (projA.magnitude <= sideA.magnitude && projA.magnitude >= 0);
+        bool withinSideB = (projB.magnitude <= sideB.magnitude && projB.magnitude >= 0);
+
+        return withinSideA && withinSideB;
     }
 }

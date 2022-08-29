@@ -32,9 +32,7 @@ public class Buoyancy : MonoBehaviour
     private void FixedUpdate()
     {
         RaycastHit hit;
-        Physics.Raycast(this.transform.position, Vector3.down, out hit, depthBeforeSubmerged, layer);
-        print(hit.point);
-        if(hit.point != null)
+        if (Physics.Raycast(this.transform.position, Vector3.down, out hit, depthBeforeSubmerged, layer))
         {
             float disFromGround = Vector3.Distance(this.transform.position, hit.point);
             float forceModifier = buoyancyForceCurve.Evaluate(1 - Mathf.Clamp01(disFromGround / depthBeforeSubmerged)) * maxBuoyancyForce;

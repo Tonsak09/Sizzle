@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ Todo:
+    - Rect stays in one place and doesn't rotate when not foot doesn't move
+    - Max length a foot can be from the root before it needs to move
+    - Choose which part of the compass for next rayCheckStart
+ */
+
 public class LegIKSolver : MonoBehaviour
 {
     public LayerMask mask;
@@ -83,10 +90,11 @@ public class LegIKSolver : MonoBehaviour
         } 
     }
 
-    
+
 
 
     // Info for moving the limb from one spot to next 
+    private Vector3[] processedRangePlane;
     private Vector3 origin;
     private Vector3 target;
     private float lerp;
@@ -99,6 +107,7 @@ public class LegIKSolver : MonoBehaviour
     {
         //target = offsetedStart;
         lerp = 0;
+        processedRangePlane = GetProcessedRangePlane();
     }
 
     // Update is called once per frame
@@ -120,12 +129,13 @@ public class LegIKSolver : MonoBehaviour
         // Checking for new position 
         if (Physics.Raycast(rayCheckStart, Vector3.down, out hit, MaxDisFromFloor, mask))
         {
+
+            print(Maths.IsPointWithinRect(hit.point, processedRangePlane) + ": " + this.gameObject.name);
             // New position found 
             if (Vector3.Distance(hit.point, target) > stepDistance)
             {
                 lerp = 0;
                 target = hit.point + hit.normal * footOffset;
-                //print(hit.normal)
                 StartCoroutine(Move(footSpeedMoving, footSpeedNotMoving));
             }
             else
@@ -163,6 +173,10 @@ public class LegIKSolver : MonoBehaviour
         }
 
         // Once point is reached 
+
+        // Sets new plane 
+        processedRangePlane = GetProcessedRangePlane();
+        // Makes sure position is where needed 
         end.transform.position = target;
         origin = target;
         moving = false;
@@ -193,6 +207,21 @@ public class LegIKSolver : MonoBehaviour
         return null;
     }
 
+    private Vector3[] GetProcessedRangePlane()
+    {
+        // Represents where a downward newPos can be and not update the foot to move
+        Vector3[] areaPlane = Maths.FormPlaneFromSize(rangeAreaBeforeMove);
+        Vector3[] proccessedAreaPlane = new Vector3[areaPlane.Length];
+
+        for (int i = 0; i < areaPlane.Length; i++)
+        {
+            proccessedAreaPlane[i] = forwardBone.TransformDirection(areaPlane[i]);
+            proccessedAreaPlane[i] = foot.position + Vector3.ProjectOnPlane(proccessedAreaPlane[i], Vector3.up);
+        }
+
+        return proccessedAreaPlane;
+    }
+
     private void OnDrawGizmos()
     {
         if(showGizmos)
@@ -204,17 +233,18 @@ public class LegIKSolver : MonoBehaviour
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(offsetedIKHint, 0.02f);
 
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(target, 0.05f);
-
             RaycastHit hit;
             // Checking for new position 
             if (Physics.Raycast(rayCheckStart, Vector3.down, out hit, MaxDisFromFloor, mask))
             {
+                Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(hit.point, 0.02f);
+
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(new Vector3(hit.point.x, foot.position.y, hit.point.z), 0.01f);
             }
 
-
+            // Visualizes compass directions
             if(compassDirections != null)
             {
                 Gizmos.color = Color.yellow;
@@ -235,30 +265,21 @@ public class LegIKSolver : MonoBehaviour
             if(!Application.isPlaying)
             {
                 target = hit.point + hit.normal * footOffset;
+                processedRangePlane = GetProcessedRangePlane();
             }
 
-            // Represents where a downward newPos can be and not update the foot to move
-            Vector3[] areaPlane = Maths.FormPlaneFromSize(rangeAreaBeforeMove);
-            Vector3[] proccessedAreaPlane = new Vector3[areaPlane.Length];
-
-            for (int i = 0; i < areaPlane.Length; i++)
+            for (int i = 0; i < processedRangePlane.Length; i++)
             {
-                proccessedAreaPlane[i] = forwardBone.TransformDirection(areaPlane[i]);
-                proccessedAreaPlane[i] = Vector3.ProjectOnPlane(proccessedAreaPlane[i], Vector3.up);
-            }
-
-            for (int i = 0; i < proccessedAreaPlane.Length; i++)
-            {
-                Gizmos.DrawSphere(foot.position + proccessedAreaPlane[i], 0.01f);
+                Gizmos.DrawSphere(processedRangePlane[i], 0.01f);
 
                 // Draws line connceted to next in line 
-                if(i < areaPlane.Length - 1)
+                if(i < processedRangePlane.Length - 1)
                 {
-                    Gizmos.DrawLine(foot.position + proccessedAreaPlane[i], foot.position + proccessedAreaPlane[i + 1]);
+                    Gizmos.DrawLine(processedRangePlane[i], processedRangePlane[i + 1]);
                 }
                 else
                 {
-                    Gizmos.DrawLine(foot.position + proccessedAreaPlane[i], foot.position + proccessedAreaPlane[0]);
+                    Gizmos.DrawLine(processedRangePlane[i], processedRangePlane[0]);
                 }
             }
         }    
