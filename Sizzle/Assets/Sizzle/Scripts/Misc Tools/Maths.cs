@@ -225,7 +225,7 @@ public static class Maths
 
     public static Vector2 Proj2D(Vector2 u, Vector2 v)
     {
-        return (Vector2.Dot(u, v) / (u.magnitude * v.magnitude)) * v.normalized;
+        return (Vector2.Dot(u, v) / (u.magnitude * v.magnitude)) * v;
     }
     
     /// <summary>
@@ -243,7 +243,7 @@ public static class Maths
         };
     }
 
-    public static bool IsPointWithinRect(Vector3 point, Vector3[] rect, out Vector2 test)
+    public static bool IsPointWithinRect(Vector3 point, Vector3[] rect, out bool test)
     {
         // Turns values into easier to use 2d vectors 
         Vector2 point2D = new Vector2(point.x, point.z);
@@ -265,10 +265,10 @@ public static class Maths
         Vector2 projA = Proj2D(point2D - rect2D[1], sideA);
         Vector2 projB = Proj2D(point2D - rect2D[3], sideB);
 
-        float lerpA = InverseLerp(rect2D[0], rect2D[1], projA);
-        float lerpB = InverseLerp(rect2D[2], rect2D[3], projB);
+        float lerpA = projA.magnitude / sideA.magnitude; //InverseLerp(rect2D[0], rect2D[1], projA);
+        float lerpB = projB.magnitude / sideB.magnitude; //InverseLerp(rect2D[2], rect2D[3], projB);
 
-        test = point2D - rect2D[1]; // Test whether the projection unit vector is the same as the the side unit vector 
+        test = projA.normalized == sideA.normalized; // Test whether the projection unit vector is the same as the the side unit vector 
         return ((lerpA <= 1 && lerpA >= 0) && (lerpB <= 1 && lerpB >= 0));
 
 

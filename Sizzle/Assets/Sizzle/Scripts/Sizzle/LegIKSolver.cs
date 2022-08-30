@@ -129,7 +129,7 @@ public class LegIKSolver : MonoBehaviour
         // Checking for new position 
         if (Physics.Raycast(rayCheckStart, Vector3.down, out hit, MaxDisFromFloor, mask))
         {
-            Vector2 testValue; 
+            bool testValue; 
             print(Maths.IsPointWithinRect(hit.point, processedRangePlane, out testValue) + ": " + this.gameObject.name);
             print(testValue + ": " + this.gameObject.name);
             // New position found 
