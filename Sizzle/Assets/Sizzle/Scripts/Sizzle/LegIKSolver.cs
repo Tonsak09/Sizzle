@@ -129,10 +129,12 @@ public class LegIKSolver : MonoBehaviour
         // Checking for new position 
         if (Physics.Raycast(rayCheckStart, Vector3.down, out hit, MaxDisFromFloor, mask))
         {
-
-            print(Maths.IsPointWithinRect(hit.point, processedRangePlane) + ": " + this.gameObject.name);
+            Vector2 testValue; 
+            print(Maths.IsPointWithinRect(hit.point, processedRangePlane, out testValue) + ": " + this.gameObject.name);
+            print(testValue + ": " + this.gameObject.name);
             // New position found 
-            if (Vector3.Distance(hit.point, target) > stepDistance)
+            //if (Vector3.Distance(hit.point, target) > stepDistance)
+            if(!Maths.IsPointWithinRect(hit.point, processedRangePlane, out testValue))
             {
                 lerp = 0;
                 target = hit.point + hit.normal * footOffset;
@@ -240,8 +242,8 @@ public class LegIKSolver : MonoBehaviour
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(hit.point, 0.02f);
 
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(new Vector3(hit.point.x, foot.position.y, hit.point.z), 0.01f);
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(new Vector3(hit.point.x, processedRangePlane[0].y, hit.point.z), 0.01f); // Change to get middle of plane instead of corner
             }
 
             // Visualizes compass directions

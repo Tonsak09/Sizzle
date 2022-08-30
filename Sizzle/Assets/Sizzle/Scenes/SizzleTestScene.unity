@@ -352,6 +352,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: moveForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: torqueForce
+      value: 22000
+      objectReference: {fileID: 0}
     - target: {fileID: 1288643249194728590, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_YMotion
       value: 0
@@ -530,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 1035590313}
     - target: {fileID: 1288643250091984816, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: showGizmos
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1288643250091984816, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: IKHintOffset.x
@@ -726,11 +734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: footSpeedMoving
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: footSpeedNotMoving
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2099600900075649836, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_Name

@@ -216,9 +216,16 @@ public static class Maths
         return Vector3.Dot(AV, AB) / Vector3.Dot(AB, AB);
     }
 
+    public static float InverseLerp(Vector2 a, Vector2 b, Vector2 value)
+    {
+        Vector2 AB = b - a;
+        Vector2 AV = value - a;
+        return Vector2.Dot(AV, AB) / Vector2.Dot(AB, AB);
+    }
+
     public static Vector2 Proj2D(Vector2 u, Vector2 v)
     {
-        return (Vector2.Dot(u, v) / (u.magnitude * v.magnitude)) * v;
+        return (Vector2.Dot(u, v) / (u.magnitude * v.magnitude)) * v.normalized;
     }
     
     /// <summary>
@@ -236,7 +243,7 @@ public static class Maths
         };
     }
 
-    public static bool IsPointWithinRect(Vector3 point, Vector3[] rect)
+    public static bool IsPointWithinRect(Vector3 point, Vector3[] rect, out Vector2 test)
     {
         // Turns values into easier to use 2d vectors 
         Vector2 point2D = new Vector2(point.x, point.z);
@@ -246,7 +253,7 @@ public static class Maths
             rect2D[i] = new Vector2(rect[i].x, rect[i].z);
         }
 
-        // Find lerp value between two pairs of the projected point
+        // Find division value between two pairs of the projected point
         // CANNOT be diagonal lines being used 
 
         // If the point is greater than side then it should be outta the line
@@ -257,6 +264,14 @@ public static class Maths
 
         Vector2 projA = Proj2D(point2D - rect2D[1], sideA);
         Vector2 projB = Proj2D(point2D - rect2D[3], sideB);
+
+        float lerpA = InverseLerp(rect2D[0], rect2D[1], projA);
+        float lerpB = InverseLerp(rect2D[2], rect2D[3], projB);
+
+        test = point2D - rect2D[1]; // Test whether the projection unit vector is the same as the the side unit vector 
+        return ((lerpA <= 1 && lerpA >= 0) && (lerpB <= 1 && lerpB >= 0));
+
+
 
         bool withinSideA = (projA.magnitude <= sideA.magnitude && projA.magnitude >= 0);
         bool withinSideB = (projB.magnitude <= sideB.magnitude && projB.magnitude >= 0);
