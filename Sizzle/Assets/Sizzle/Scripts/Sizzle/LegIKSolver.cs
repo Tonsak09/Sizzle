@@ -24,7 +24,9 @@ public class LegIKSolver : MonoBehaviour
     [SerializeField] Transform foot;
 
     [Header("Step variables")]
-    [SerializeField] float stepHeight;
+    [Tooltip("The curve that will determine how high the foot will be from the floor over the step duration")]
+    [SerializeField] AnimationCurve heightCurve;
+    [SerializeField] float stepMaxHeight;
     [SerializeField] float MaxDisFromFloor;
     [SerializeField] float stepDistance;
     [SerializeField] float footOffset;
@@ -39,6 +41,13 @@ public class LegIKSolver : MonoBehaviour
 
     [Header("Leg Compass")]
     [SerializeField] Vector3[] compassDirections;
+    [SerializeField] float maxLinearVel;
+    [SerializeField] float maxMagnitudeOfCompass;
+    [Tooltip("The rate that the linear velocity will impact the magnitude of the direction chosen from the compass")]
+    [SerializeField] AnimationCurve linearVelEffectOnMag;
+    [SerializeField] float maxAngularVelInfluence;
+    [Tooltip("The rate that the angular velocity will impact the compass")]
+    [SerializeField] AnimationCurve angularVelEffectOnTurnAmout;
 
     [Header("GUI")]
     [SerializeField] bool showGizmos;
@@ -62,7 +71,6 @@ public class LegIKSolver : MonoBehaviour
         } 
     }
 
-
     /// <summary>
     /// Where the joint should tend to bend 
     /// </summary>
@@ -83,14 +91,9 @@ public class LegIKSolver : MonoBehaviour
     { 
         get 
         { 
-            return RootPos +
-                axisVectorForward* rayCheckStartOffset.z +
-                axisVectorRight * rayCheckStartOffset.x +
-                axisVectorUp * rayCheckStartOffset.y;
+            return RootPos + ChooseCompassDir();
         } 
     }
-
-
 
 
     // Info for moving the limb from one spot to next 
@@ -101,13 +104,14 @@ public class LegIKSolver : MonoBehaviour
     private bool moving;
 
     public bool Moving { get { return moving; } }
+    public float Lerp { get { return lerp; } }
 
     // Start is called before the first frame update
     void Start()
     {
         //target = offsetedStart;
         lerp = 0;
-        processedRangePlane = GetProcessedRangePlane();
+        processedRangePlane = GetLocalizedRangePlane();
     }
 
     // Update is called once per frame
@@ -115,12 +119,13 @@ public class LegIKSolver : MonoBehaviour
     {
         //IKStart.position = startFootPosition;
         IKHint.position = offsetedIKHint;
+        end.position = target;
         ChooseCompassDir();
     }
 
     public void TryMove(float footSpeedMoving, float footSpeedNotMoving)
     {
-        if(Moving)
+        if(moving)
         {
             return;
         }
@@ -129,12 +134,18 @@ public class LegIKSolver : MonoBehaviour
         // Checking for new position 
         if (Physics.Raycast(rayCheckStart, Vector3.down, out hit, MaxDisFromFloor, mask))
         {
-            bool testValue; 
-            print(Maths.IsPointWithinRect(hit.point, processedRangePlane, out testValue) + ": " + this.gameObject.name);
-            print(testValue + ": " + this.gameObject.name);
+
+            // TODO: Be able to find the when foot is within or outta rect range
+            //bool testValue; 
+            //print(Maths.IsPointWithinRect(hit.point, processedRangePlane, out testValue) + ": " + this.gameObject.name);
+            //print(testValue + ": " + this.gameObject.name);
+
+
             // New position found 
-            //if (Vector3.Distance(hit.point, target) > stepDistance)
-            if(!Maths.IsPointWithinRect(hit.point, processedRangePlane, out testValue))
+
+
+            if (Vector3.Distance(hit.point, target) > stepDistance)
+            //if(!Maths.IsPointWithinRect(hit.point, processedRangePlane, out testValue))
             {
                 lerp = 0;
                 target = hit.point + hit.normal * footOffset;
@@ -159,7 +170,7 @@ public class LegIKSolver : MonoBehaviour
         {
             // Moves smoothly to new point 
             Vector3 footPos = Vector3.Lerp(origin, target, lerp);
-            footPos.y += Mathf.Sin(lerp * Mathf.PI) * stepHeight;
+            footPos.y += heightCurve.Evaluate(lerp) * stepMaxHeight; 
 
             end.position = footPos;
 
@@ -177,20 +188,54 @@ public class LegIKSolver : MonoBehaviour
         // Once point is reached 
 
         // Sets new plane 
-        processedRangePlane = GetProcessedRangePlane();
+        processedRangePlane = GetLocalizedRangePlane();
         // Makes sure position is where needed 
         end.transform.position = target;
         origin = target;
         moving = false;
     }
 
+    /// <summary>
+    /// Sets the raycast down position to the best compass vector 
+    /// </summary>
+    /// <returns></returns>
     private Vector3 ChooseCompassDir()
     {
-        Vector3[] LocalizedCompass = GetLocalizedCompass();
+        Vector3[] localizedCompass = GetLocalizedCompass();
 
-        return new Vector3();
+        Vector3 lVel = forwardBone.GetComponent<Rigidbody>().velocity;
+
+        // Only need to consider the y rotation
+        float aVel = forwardBone.GetComponent<Rigidbody>().angularVelocity.y;
+
+
+        // Get the direction of the next step 
+        // Todo : Angular Vel rotates the lvel
+
+        Vector3 dir = localizedCompass[0];
+        float dotProduct = Vector3.Dot(lVel.normalized, localizedCompass[0]);
+        // Compare the unit direction of the lVel and see which it matches with the closest 
+        for (int i = 1; i < localizedCompass.Length; i++)
+        {
+            // The bigger the dot product the more parrallel they are 
+            float currentDot = Vector3.Dot(lVel.normalized, localizedCompass[0]);
+            if(currentDot > dotProduct)
+            {
+                dir = localizedCompass[i];
+            }
+        }
+
+        // Get the magnitude of the next step 
+        float mag = linearVelEffectOnMag.Evaluate(Mathf.Clamp01(lVel.magnitude / maxLinearVel)) * maxMagnitudeOfCompass;
+
+        return dir * mag;
     }
 
+    /// <summary>
+    /// Applies the directions and coordinates of the compass as if the forward bone 
+    /// were its parent matrix 
+    /// </summary>
+    /// <returns></returns>
     private Vector3[] GetLocalizedCompass()
     {
         if (compassDirections != null)
@@ -209,7 +254,13 @@ public class LegIKSolver : MonoBehaviour
         return null;
     }
 
-    private Vector3[] GetProcessedRangePlane()
+    /// <summary>
+    /// Applies the directions and coordinates of the plane as if the forward bone 
+    /// were its parent matrix. Plane is set around foot position indicating its range
+    /// before updating to move 
+    /// </summary>
+    /// <returns></returns>
+    private Vector3[] GetLocalizedRangePlane()
     {
         // Represents where a downward newPos can be and not update the foot to move
         Vector3[] areaPlane = Maths.FormPlaneFromSize(rangeAreaBeforeMove);
@@ -230,7 +281,7 @@ public class LegIKSolver : MonoBehaviour
         {
             //Vector3 difference = axisVector.normalized - Vector3.forward;
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(rayCheckStart, 0.02f);
+            //Gizmos.DrawSphere(rayCheckStart, 0.02f);
 
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(offsetedIKHint, 0.02f);
@@ -243,7 +294,10 @@ public class LegIKSolver : MonoBehaviour
                 Gizmos.DrawWireSphere(hit.point, 0.02f);
 
                 Gizmos.color = Color.green;
-                Gizmos.DrawWireSphere(new Vector3(hit.point.x, processedRangePlane[0].y, hit.point.z), 0.01f); // Change to get middle of plane instead of corner
+                if(processedRangePlane != null)
+                {
+                    Gizmos.DrawWireSphere(new Vector3(hit.point.x, processedRangePlane[0].y, hit.point.z), 0.01f); // Change to get middle of plane instead of corner
+                }
             }
 
             // Visualizes compass directions
@@ -267,7 +321,7 @@ public class LegIKSolver : MonoBehaviour
             if(!Application.isPlaying)
             {
                 target = hit.point + hit.normal * footOffset;
-                processedRangePlane = GetProcessedRangePlane();
+                processedRangePlane = GetLocalizedRangePlane();
             }
 
             for (int i = 0; i < processedRangePlane.Length; i++)
@@ -284,6 +338,9 @@ public class LegIKSolver : MonoBehaviour
                     Gizmos.DrawLine(processedRangePlane[i], processedRangePlane[0]);
                 }
             }
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(RootPos + ChooseCompassDir(), 0.02f);
         }    
     }
 }

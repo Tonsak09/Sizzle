@@ -14,6 +14,9 @@ public class LegsController : MonoBehaviour
     [SerializeField] float footSpeedMoving;
     [SerializeField] float footSpeedNotMoving;
 
+    [Header("Values")]
+    [SerializeField] float minlerpBeforePair;
+
     //[Range(0, 1)]
     //[SerializeField] float lerpToMoveOpposite;
 
@@ -23,25 +26,26 @@ public class LegsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*frontPair = new LegIKSolver[] { frontLeft, frontRight };
+        frontPair = new LegIKSolver[] { frontLeft, frontRight };
         backPair = new LegIKSolver[] { backLeft, backRight };
-
+        /*
         frontLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
         backRight.TryMove(footSpeedMoving, footSpeedNotMoving);
         backLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
         frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);*/
 
-        //StartCoroutine(LegUpdateCoroutine());
+        StartCoroutine(LegUpdateCoroutine(frontPair));
+        StartCoroutine(LegUpdateCoroutine(backPair));
     }
 
     private void Update()
     {
         //RunPair(frontPair, frontCurrent);
         
-        frontLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
+        /*frontLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
         backRight.TryMove(footSpeedMoving, footSpeedNotMoving);
         backLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
-        frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);
+        frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);*/
 
 
         
@@ -63,11 +67,15 @@ public class LegsController : MonoBehaviour
 
     }*/
 
-    public IEnumerator LegUpdateCoroutine()
+    public IEnumerator LegUpdateCoroutine(LegIKSolver[] pair)
     {
+
+        bool current = true;
+        // Index 
+        int index = 0;
         while (true)
         {
-            do
+            /*do
             {
                 frontLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
                 backRight.TryMove(footSpeedMoving, footSpeedNotMoving);
@@ -81,7 +89,41 @@ public class LegsController : MonoBehaviour
                 frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);
 
                 yield return null;
-            } while (backLeft.Moving || frontRight.Moving);
+            } while (backLeft.Moving || frontRight.Moving);*/
+
+
+            // Find primary leg moving
+            if(pair[0].Moving && !pair[1].Moving)
+            {
+                if(pair[0].Lerp >= minlerpBeforePair)
+                {
+                    pair[1].TryMove(footSpeedMoving, footSpeedNotMoving);
+                }
+            }
+            if (!pair[0].Moving && pair[1].Moving)
+            {
+                if (pair[1].Lerp >= minlerpBeforePair)
+                {
+                    pair[0].TryMove(footSpeedMoving, footSpeedNotMoving);
+                }
+            }
+            if(!pair[0].Moving && !pair[1].Moving)
+            {
+                // If neither are moving try to move one randomly 
+                pair[Random.Range(0, 2)].TryMove(footSpeedMoving, footSpeedNotMoving);
+            }
+
+            /*if(pair[index].Moving)
+            {
+                if(pair[index].Lerp >= minlerpBeforePair)
+                {
+                    pair[current ? 1 : 0].TryMove(footSpeedMoving, footSpeedNotMoving);
+                }
+            }*/
+
+
+
+            yield return null;
         }
     }
 }
