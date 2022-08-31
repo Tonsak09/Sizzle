@@ -218,7 +218,7 @@ public class LegIKSolver : MonoBehaviour
         for (int i = 1; i < localizedCompass.Length; i++)
         {
             // The bigger the dot product the more parrallel they are 
-            float currentDot = Vector3.Dot(lVel.normalized, localizedCompass[0]);
+            float currentDot = Vector3.Dot(lVel.normalized, localizedCompass[i]);
             if(currentDot > dotProduct)
             {
                 dir = localizedCompass[i];

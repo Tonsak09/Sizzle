@@ -369,6 +369,7 @@
 "Assets/Sizzle/Scripts/Sizzle/SkeletonController.cs"
 "Assets/Sizzle/Scripts/Sizzle/Sparks.cs"
 "Assets/Sizzle/Scripts/Sound/SoundOnParticleDeath.cs"
+"Assets/TorqueTowardsRotation.cs"
 -langversion:8.0
 
 /deterministic
