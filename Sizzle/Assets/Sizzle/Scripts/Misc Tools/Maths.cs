@@ -278,4 +278,9 @@ public static class Maths
 
         return withinSideA && withinSideB;
     }
+
+    public static float Lerp(float a, float b, float t)
+    {
+        return a + (b - a) * t;
+    }
 }

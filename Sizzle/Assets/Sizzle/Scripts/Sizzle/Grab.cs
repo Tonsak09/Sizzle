@@ -32,30 +32,48 @@ public class Grab : MonoBehaviour
 
     [Header("Grabbing")]
     [Tooltip("The threshold the lerp must surpass before Sizzle can grab anything")]
-    [SerializeField] float jawLerpThreshold;
+    [SerializeField] Vector2 jawLerpRange;
 
     [SerializeField] Vector3 detectStartOffset;
     [SerializeField] Vector3 detectTargetOffset;
     [SerializeField] AnimationCurve detectOffsetAnimCurve;
-    [SerializeField] float detectOffsetSpeed;
+    [SerializeField] float detectSpeed;
 
-    [SerializeField] Vector3 detectStartSize;
-    [SerializeField] Vector3 detectTargetSize;
+    [SerializeField] float detectStartSize;
+    [SerializeField] float detectTargetSize;
+
+    [SerializeField] LayerMask grabbable;
 
 
     // The lerp between a mouth open and closed 
     private float neckLerp;
     private float jawLerp;
+    private float detectLerp;
+
+
+    private Transform heldItem;
 
     private void Update()
     {
         AnimateJaw();
 
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonUp(1))
         {
-            if (jawLerp >= jawLerpThreshold)
+            // Makes sure it's within range
+            if (jawLerp >= jawLerpRange.x && jawLerp <= jawLerpRange.y)
             {
+                Collider[] grabbables = Physics.OverlapSphere
+                    (
+                        neckJoint.transform.TransformDirection(Vector3.Lerp(detectStartOffset, detectTargetOffset, detectOffsetAnimCurve.Evaluate(detectLerp))),
+                        Maths.Lerp(detectStartSize, detectTargetSize, detectLerp),
+                        grabbable
+                    );
 
+                if(grabbables.Length > 0)
+                {
+                    print("test");
+                    grabbables[0].transform.parent = jawJoint.transform;
+                }
             }
         }
     }
@@ -74,6 +92,10 @@ public class Grab : MonoBehaviour
             {
                 jawLerp += JawOpenSpeed * Time.deltaTime;
             }
+            if(detectLerp < 1)
+            {
+                detectLerp += detectSpeed * Time.deltaTime;
+            }
 
             // Applys the rotation 
             neckJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(neckDefaultRot, neckTargetRot, neckOpenAnimCurve.Evaluate(neckLerp)));
@@ -90,10 +112,31 @@ public class Grab : MonoBehaviour
             {
                 jawLerp -= neckOpenSpeed * Time.deltaTime;
             }
+            if (detectLerp > 0)
+            {
+                detectLerp -= detectSpeed * Time.deltaTime;
+            }
 
             // Applys the rotation 
             neckJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(neckDefaultRot, neckTargetRot, neckCloseAnimCurve.Evaluate(neckLerp)));
             jawJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(jawDefaultRot, jawTargetRot, jawCloseAnimCurve.Evaluate(jawLerp)));
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (jawLerp >= jawLerpRange.x && jawLerp <= jawLerpRange.y)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+
+        Gizmos.DrawWireSphere(neckJoint.transform.position + 
+            neckJoint.transform.TransformDirection(Vector3.Lerp(detectStartOffset, detectTargetOffset, detectOffsetAnimCurve.Evaluate(detectLerp))),
+            Maths.Lerp(detectStartSize, detectTargetSize, detectLerp)
+            );
     }
 }
