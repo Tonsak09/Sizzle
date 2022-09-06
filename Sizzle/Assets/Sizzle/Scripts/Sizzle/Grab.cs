@@ -30,6 +30,8 @@ public class Grab : MonoBehaviour
     [SerializeField] AnimationCurve jawCloseAnimCurve;
     [SerializeField] float JawCloseSpeed;
 
+    [SerializeField] float closedJawLerp;
+
     [Header("Grabbing")]
     [Tooltip("The threshold the lerp must surpass before Sizzle can grab anything")]
     [SerializeField] Vector2 jawLerpRange;
@@ -49,7 +51,7 @@ public class Grab : MonoBehaviour
     private float neckLerp;
     private float jawLerp;
     private float detectLerp;
-
+    
 
     private Transform heldItem;
 
@@ -57,23 +59,53 @@ public class Grab : MonoBehaviour
     {
         AnimateJaw();
 
+        if(Input.GetMouseButton(1))
+        {
+            // Grabbing an item 
+            if(heldItem == null)
+            {
+                // Makes sure it's within range
+                if (jawLerp >= jawLerpRange.x && jawLerp <= jawLerpRange.y)
+                {
+                    Collider[] grabbables = Physics.OverlapSphere
+                        (
+                            neckJoint.transform.position +
+                            neckJoint.transform.TransformDirection(Vector3.Lerp(detectStartOffset, detectTargetOffset, detectOffsetAnimCurve.Evaluate(detectLerp))),
+                            Maths.Lerp(detectStartSize, detectTargetSize, detectLerp),
+                            grabbable
+                        );
+
+                    if (grabbables.Length > 0)
+                    {
+
+                        grabbables[0].GetComponent<Rigidbody>().isKinematic = true;
+                        grabbables[0].GetComponent<Buoyancy>().enabled = false;
+
+                        heldItem = grabbables[0].transform;
+                        grabbables[0].transform.parent = jawJoint.transform;
+                    }
+                }
+            }
+            else
+            {
+                jawLerp = closedJawLerp;
+                jawJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(jawDefaultRot, jawTargetRot, jawOpenAnimCurve.Evaluate(jawLerp)));
+            }
+        }
+        
         if(Input.GetMouseButtonUp(1))
         {
-            // Makes sure it's within range
-            if (jawLerp >= jawLerpRange.x && jawLerp <= jawLerpRange.y)
+            // Grabbing an item 
+            if (heldItem != null)
             {
-                Collider[] grabbables = Physics.OverlapSphere
-                    (
-                        neckJoint.transform.TransformDirection(Vector3.Lerp(detectStartOffset, detectTargetOffset, detectOffsetAnimCurve.Evaluate(detectLerp))),
-                        Maths.Lerp(detectStartSize, detectTargetSize, detectLerp),
-                        grabbable
-                    );
+                // Throwing an object 
+                heldItem.parent = null;
 
-                if(grabbables.Length > 0)
-                {
-                    print("test");
-                    grabbables[0].transform.parent = jawJoint.transform;
-                }
+                heldItem.GetComponent<Rigidbody>().isKinematic = false;
+                heldItem.GetComponent<Buoyancy>().enabled = true;
+                heldItem.eulerAngles = new Vector3(0, heldItem.eulerAngles.y, 0);
+
+                heldItem = null;
             }
         }
     }
