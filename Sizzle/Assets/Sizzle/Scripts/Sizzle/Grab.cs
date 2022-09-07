@@ -78,11 +78,14 @@ public class Grab : MonoBehaviour
                     if (grabbables.Length > 0)
                     {
 
-                        grabbables[0].GetComponent<Rigidbody>().isKinematic = true;
-                        grabbables[0].GetComponent<Buoyancy>().enabled = false;
 
                         heldItem = grabbables[0].transform;
-                        grabbables[0].transform.parent = jawJoint.transform;
+
+                        heldItem.GetComponent<Grabbable>().SetGrabActive();
+                        heldItem.GetComponent<Rigidbody>().isKinematic = true;
+                        heldItem.GetComponent<Buoyancy>().enabled = false;
+
+                        heldItem.transform.parent = jawJoint.transform;
                     }
                 }
             }
@@ -101,8 +104,10 @@ public class Grab : MonoBehaviour
                 // Throwing an object 
                 heldItem.parent = null;
 
+                heldItem.GetComponent<Grabbable>().SetNonGrabActive();
                 heldItem.GetComponent<Rigidbody>().isKinematic = false;
                 heldItem.GetComponent<Buoyancy>().enabled = true;
+
                 heldItem.eulerAngles = new Vector3(0, heldItem.eulerAngles.y, 0);
 
                 heldItem = null;

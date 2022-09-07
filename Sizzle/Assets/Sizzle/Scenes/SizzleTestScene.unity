@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1481.7754, g: 1835.8867, b: 2430.4492, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -926,6 +926,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149584625}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1319800022 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6819526013567214877, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+  m_PrefabInstance: {fileID: 794217216}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1387362880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1147,6 +1152,7 @@ GameObject:
   - component: {fileID: 1481207537}
   - component: {fileID: 1481207540}
   - component: {fileID: 1481207541}
+  - component: {fileID: 1481207542}
   m_Layer: 6
   m_Name: Lantern
   m_TagString: Untagged
@@ -1286,6 +1292,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.051695425, z: 0.9}
   m_Center: {x: 0, y: -0.20756403, z: 0}
+--- !u!114 &1481207542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481207536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa926b8f958928f448a83630e7056ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NonGrabbedColliders:
+  - {fileID: 1481207541}
+  GrabbedColliders: []
 --- !u!1 &1732623992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,102 +1403,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732623992}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1944637502
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1944637506}
-  - component: {fileID: 1944637505}
-  - component: {fileID: 1944637504}
-  - component: {fileID: 1944637503}
-  m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!135 &1944637503
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944637502}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1944637504
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944637502}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: cb05b04a9a74d2145b0bdcfcbe029170, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1944637505
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944637502}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1944637506
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944637502}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24, y: 0.588, z: 1.265}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1991458213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,6 +1467,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2099600900075649836, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
   m_PrefabInstance: {fileID: 794217216}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2129968062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129968061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469dc85eaad5c5941abefeef3bafeb36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jawHinge: {fileID: 1319800022}
+  jawTip: {fileID: 0}
+  sparksStart: {fileID: 0}
+  sparksFX: {fileID: 0}
+  triggerSphere: {fileID: 0}
+  grabber: {fileID: 0}
+  coolDown: 0
+  triggerTime: 0
+  triggerSphereSpeed: 0
+  triggerSphereDistance: 0
+  neckOffset: {x: 0, y: 0, z: 0}
+  neckSpeed: 0
+  jawRotation: 0
+  jawRotSpeed: 0
+  mouthCloseSounds: []
+  sparkStartHiss: {fileID: 0}
 --- !u!114 &2129968066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,10 +1613,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   JawCloseSpeed: 5
-  closedJawLerp: 0.5
+  closedJawLerp: 0.4
   jawLerpRange: {x: 0.3, y: 1.1}
   detectStartOffset: {x: 0, y: 0, z: 0.12}
-  detectTargetOffset: {x: 0, y: -0.1, z: 0.3}
+  detectTargetOffset: {x: 0, y: -0.1, z: 0.25}
   detectOffsetAnimCurve:
     serializedVersion: 2
     m_Curve:
