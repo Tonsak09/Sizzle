@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour
 {
-
-
     [Header("Neck")]
     [SerializeField] ConfigurableJoint neckJoint;
 
@@ -58,11 +56,15 @@ public class Grab : MonoBehaviour
     private void Update()
     {
         AnimateJaw();
+        GrabLogic();
+    }
 
-        if(Input.GetMouseButton(1))
+    private void GrabLogic()
+    {
+        if (Input.GetMouseButton(1))
         {
             // Grabbing an item 
-            if(heldItem == null)
+            if (heldItem == null)
             {
                 // Makes sure it's within range
                 if (jawLerp >= jawLerpRange.x && jawLerp <= jawLerpRange.y)
@@ -81,6 +83,7 @@ public class Grab : MonoBehaviour
 
                         heldItem = grabbables[0].transform;
 
+                        // Sets held objects params so physics don't mess with one another 
                         heldItem.GetComponent<Grabbable>().SetGrabActive();
                         heldItem.GetComponent<Rigidbody>().isKinematic = true;
                         heldItem.GetComponent<Buoyancy>().enabled = false;
@@ -91,12 +94,13 @@ public class Grab : MonoBehaviour
             }
             else
             {
+                // Grabbed hold postion
                 jawLerp = closedJawLerp;
                 jawJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(jawDefaultRot, jawTargetRot, jawOpenAnimCurve.Evaluate(jawLerp)));
             }
         }
-        
-        if(Input.GetMouseButtonUp(1))
+
+        if (Input.GetMouseButtonUp(1))
         {
             // Grabbing an item 
             if (heldItem != null)
@@ -104,6 +108,7 @@ public class Grab : MonoBehaviour
                 // Throwing an object 
                 heldItem.parent = null;
 
+                // Reactivates parts of obj so can act as normal 
                 heldItem.GetComponent<Grabbable>().SetNonGrabActive();
                 heldItem.GetComponent<Rigidbody>().isKinematic = false;
                 heldItem.GetComponent<Buoyancy>().enabled = true;
@@ -147,7 +152,7 @@ public class Grab : MonoBehaviour
             }
             if (jawLerp > 0)
             {
-                jawLerp -= neckOpenSpeed * Time.deltaTime;
+                jawLerp -= JawCloseSpeed * Time.deltaTime;
             }
             if (detectLerp > 0)
             {
