@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Sparks : MonoBehaviour
 {
-    [Header("Prefabs")]
+    [Header("Sparks")]
     [SerializeField] GameObject sparksFX;
+    [SerializeField] Vector3 sparksOffsetFromNeck;
+    [SerializeField] float delayToSpawnSparks;
+    [Space]
+    [SerializeField] Vector3 detectOffset;
+    [SerializeField] float detectRadius;
+    [SerializeField] LayerMask detectMask;
 
     [Header("Neck")]
     [SerializeField] ConfigurableJoint neckJoint;
@@ -18,7 +24,6 @@ public class Sparks : MonoBehaviour
     [SerializeField] float neckSpeed;
 
 
-
     [Header("Jaw")]
     [SerializeField] ConfigurableJoint jawJoint;
 
@@ -29,6 +34,7 @@ public class Sparks : MonoBehaviour
     [SerializeField] AnimationCurve jawCloseAnimCurve;
     [SerializeField] float jawSpeed;
 
+    private const string ANIMKEY = "Sparks";
     private BodyAnimationManager animaManager; 
 
     private void Start()
@@ -40,9 +46,22 @@ public class Sparks : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            animaManager.TryAnimateHead(HeadAnimation(), "Sparks");
+            TryToSparks();
         }
     }
+
+    /// <summary>
+    /// Makes sure that there are no obstacles in front or other conditions
+    /// that will inhibit Sizzle from creating sparks 
+    /// </summary>
+    private void TryToSparks()
+    {
+        if (!Physics.CheckSphere(neckJoint.transform.position + neckJoint.transform.TransformDirection(detectOffset), detectRadius, detectMask))
+        {
+            animaManager.TryAnimateHead(HeadAnimation(), ANIMKEY);
+        }
+    }
+
 
     private IEnumerator HeadAnimation()
     {
@@ -50,8 +69,11 @@ public class Sparks : MonoBehaviour
         float neckLerp = 0;
         float jawLerp = 0;
 
+        // Starts timer till spawning sparks 
+        StartCoroutine(SpawnSparks());
+
         // Opening
-        while(neckLerp < 1 && jawLerp < 1)
+        while (neckLerp < 1 && jawLerp < 1)
         {
             neckLerp = Mathf.Clamp01(neckLerp + neckSpeed * Time.deltaTime);
             jawLerp = Mathf.Clamp01(jawLerp + jawSpeed * Time.deltaTime);
@@ -74,6 +96,18 @@ public class Sparks : MonoBehaviour
             jawJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(jawDefaultRot, jawTargetRot, jawCloseAnimCurve.Evaluate(jawLerp)));
             yield return null;
         }
-        animaManager.EndAnimation("Sparks");
+        animaManager.EndAnimation(ANIMKEY);
+    }
+
+    private IEnumerator SpawnSparks()
+    {
+        yield return new WaitForSeconds(delayToSpawnSparks);
+        Instantiate(sparksFX, neckJoint.transform.position + neckJoint.transform.TransformDirection(sparksOffsetFromNeck), neckJoint.transform.rotation);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(neckJoint.transform.position + neckJoint.transform.TransformDirection(detectOffset), detectRadius);
     }
 }

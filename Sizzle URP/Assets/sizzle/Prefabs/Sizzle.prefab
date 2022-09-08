@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2405,8 +2405,9 @@ GameObject:
   - component: {fileID: 2099600900075649835}
   - component: {fileID: 1536415207}
   - component: {fileID: 1536415208}
-  - component: {fileID: 2129968062}
   - component: {fileID: 2129968066}
+  - component: {fileID: 403004731}
+  - component: {fileID: 403004732}
   m_Layer: 3
   m_Name: Sizzle
   m_TagString: Untagged
@@ -2482,34 +2483,6 @@ MonoBehaviour:
   moveForce: 500
   torqueForce: 22000
   forward: {x: 0, y: 0, z: 0}
---- !u!114 &2129968062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099600900075649836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469dc85eaad5c5941abefeef3bafeb36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jawHinge: {fileID: 6819526013567214877}
-  jawTip: {fileID: 0}
-  sparksStart: {fileID: 0}
-  sparksFX: {fileID: 0}
-  triggerSphere: {fileID: 0}
-  grabber: {fileID: 0}
-  coolDown: 0
-  triggerTime: 0
-  triggerSphereSpeed: 0
-  triggerSphereDistance: 0
-  neckOffset: {x: 0, y: 0, z: 0}
-  neckSpeed: 0
-  jawRotation: 0
-  jawRotSpeed: 0
-  mouthCloseSounds: []
-  sparkStartHiss: {fileID: 0}
 --- !u!114 &2129968066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2662,6 +2635,137 @@ MonoBehaviour:
   grabbable:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &403004731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099600900075649836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ce1eac9e0e4184d8d3ed01340fef08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &403004732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099600900075649836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469dc85eaad5c5941abefeef3bafeb36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparksFX: {fileID: 3512380908481708352, guid: ea78a777aabec0e419c29c1418110701, type: 3}
+  sparksOffsetFromNeck: {x: 0, y: 0, z: 0}
+  delayToSpawnSparks: 0
+  neckJoint: {fileID: 1288643249763778525}
+  neckDefaultRot: {x: 0, y: 0, z: 0}
+  neckTargetRot: {x: 30, y: 0, z: 0}
+  neckOpenAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  neckCloseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  neckSpeed: 5
+  jawJoint: {fileID: 1448753523}
+  jawDefaultRot: {x: 0, y: 0, z: 0}
+  jawTargetRot: {x: -50, y: 0, z: 0}
+  jawOpenAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jawCloseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jawSpeed: 5
 --- !u!1 &2180877788356225499
 GameObject:
   m_ObjectHideFlags: 0
@@ -3346,7 +3450,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.9017583e-12, y: -0.0000000017462298, z: 0.44578516}
+  m_ConnectedAnchor: {x: 1.9017583e-12, y: -0.0000000020954758, z: 0.44578505}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4627,7 +4731,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.6518201e-13, y: -0.00000002514571, z: 0.07700078}
+  m_ConnectedAnchor: {x: 1.6518201e-13, y: -0.000000015832484, z: 0.07700084}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
