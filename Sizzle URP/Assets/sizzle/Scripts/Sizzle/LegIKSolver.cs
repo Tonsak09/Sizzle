@@ -217,7 +217,7 @@ public class LegIKSolver : MonoBehaviour
 
         Vector3 dir = localizedCompass[0];
         //float initial = Vector3.Dot(lVel.normalized, localizedCompass[0]);
-        float initial = Vector3.Distance(lVel, localizedCompass[0]);
+        float hold = Vector3.Distance(lVel, localizedCompass[0]);
         print(lVel);
 
 
@@ -233,9 +233,10 @@ public class LegIKSolver : MonoBehaviour
             //float current = Vector3.Dot(lVel.normalized, localizedCompass[i]);
             float current = Vector3.Distance(lVel, localizedCompass[i]);
 
-            if (current < initial) // Swapped sign
+            if (current < hold) // Swapped sign
             {
                 dir = localizedCompass[i];
+                hold = current;
             }
         }
 
