@@ -30,7 +30,7 @@ public class BodyAnimationManager : MonoBehaviour
 
     public void EndAnimation(string _key)
     {
-        print("Trying to end");
+        //print("Trying to end");
         if(key == _key)
         {
             StopCoroutine(currentHeadAnim);

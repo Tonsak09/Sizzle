@@ -218,8 +218,6 @@ public class LegIKSolver : MonoBehaviour
         Vector3 dir = localizedCompass[0];
         //float initial = Vector3.Dot(lVel.normalized, localizedCompass[0]);
         float hold = Vector3.Distance(lVel, localizedCompass[0]);
-        print(lVel);
-
 
         if (showGizmos)
         {

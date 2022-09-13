@@ -12,6 +12,9 @@ public class Sparks : MonoBehaviour
     [SerializeField] Vector3 detectOffset;
     [SerializeField] float detectRadius;
     [SerializeField] LayerMask detectMask;
+    [Space]
+    [Tooltip("Sent out from Sizzle to check for Slime triggers")]
+    [SerializeField] GameObject checkSphere;
 
     [Header("Neck")]
     [SerializeField] ConfigurableJoint neckJoint;
@@ -71,6 +74,7 @@ public class Sparks : MonoBehaviour
 
         // Starts timer till spawning sparks 
         StartCoroutine(SpawnSparks());
+        Instantiate(checkSphere, neckJoint.transform.position, neckJoint.transform.rotation);
 
         // Opening
         while (neckLerp < 1 && jawLerp < 1)

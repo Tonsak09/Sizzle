@@ -359,6 +359,7 @@
 "Assets/sizzle/Scripts/Misc Tools/DestroyOnCollision.cs"
 "Assets/sizzle/Scripts/Misc Tools/DestroyTimer.cs"
 "Assets/sizzle/Scripts/Misc Tools/Maths.cs"
+"Assets/sizzle/Scripts/MoveAndGrow.cs"
 "Assets/sizzle/Scripts/Physics/Buoyancy.cs"
 "Assets/sizzle/Scripts/Physics/ForceController.cs"
 "Assets/sizzle/Scripts/Physics/TorqueTowardsRotation.cs"
@@ -373,6 +374,7 @@
 "Assets/sizzle/Scripts/Sizzle/SkeletonController.cs"
 "Assets/sizzle/Scripts/Sizzle/Sparks.cs"
 "Assets/sizzle/Scripts/Sound/SoundOnParticleDeath.cs"
+"Assets/Slime.cs"
 -langversion:8.0
 
 /deterministic
