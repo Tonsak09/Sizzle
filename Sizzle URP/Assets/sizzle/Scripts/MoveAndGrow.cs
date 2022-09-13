@@ -41,13 +41,5 @@ public class MoveAndGrow : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        print(other.gameObject.name);
-
-        if(other.gameObject.tag == "Slime")
-        {
-            other.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-5, 5), Random.Range(5, 10), Random.Range(-5, 5)), ForceMode.Impulse);
-        }
-    }
+    
 }

@@ -374,7 +374,7 @@
 "Assets/sizzle/Scripts/Sizzle/SkeletonController.cs"
 "Assets/sizzle/Scripts/Sizzle/Sparks.cs"
 "Assets/sizzle/Scripts/Sound/SoundOnParticleDeath.cs"
-"Assets/Slime.cs"
+"Assets/sizzle/Slime.cs"
 -langversion:8.0
 
 /deterministic
