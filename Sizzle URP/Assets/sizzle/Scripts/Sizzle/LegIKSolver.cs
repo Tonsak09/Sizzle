@@ -48,6 +48,7 @@ public class LegIKSolver : MonoBehaviour
     [SerializeField] float maxAngularVelInfluence;
     [Tooltip("The rate that the angular velocity will impact the compass")]
     [SerializeField] AnimationCurve angularVelEffectOnTurnAmout;
+    [SerializeField] bool isBackwards;
 
     [Header("GUI")]
     [SerializeField] bool showGizmos;
@@ -201,8 +202,10 @@ public class LegIKSolver : MonoBehaviour
     /// <returns></returns>
     private Vector3 ChooseCompassDir()
     {
+        // Normalized compass based on the parent bones transform direction
         Vector3[] localizedCompass = GetLocalizedCompass();
 
+        // Linear Velocity 
         Vector3 lVel = forwardBone.GetComponent<Rigidbody>().velocity;
 
         // Only need to consider the y rotation
@@ -213,13 +216,24 @@ public class LegIKSolver : MonoBehaviour
         // Todo : Angular Vel rotates the lvel
 
         Vector3 dir = localizedCompass[0];
-        float dotProduct = Vector3.Dot(lVel.normalized, localizedCompass[0]);
+        //float initial = Vector3.Dot(lVel.normalized, localizedCompass[0]);
+        float initial = Vector3.Distance(lVel, localizedCompass[0]);
+        print(lVel);
+
+
+        if (showGizmos)
+        {
+            //print(lVel - localizedCompass[1]);
+        }
+
         // Compare the unit direction of the lVel and see which it matches with the closest 
         for (int i = 1; i < localizedCompass.Length; i++)
         {
             // The bigger the dot product the more parrallel they are 
-            float currentDot = Vector3.Dot(lVel.normalized, localizedCompass[i]);
-            if(currentDot > dotProduct)
+            //float current = Vector3.Dot(lVel.normalized, localizedCompass[i]);
+            float current = Vector3.Distance(lVel, localizedCompass[i]);
+
+            if (current < initial) // Swapped sign
             {
                 dir = localizedCompass[i];
             }
@@ -227,8 +241,16 @@ public class LegIKSolver : MonoBehaviour
 
         // Get the magnitude of the next step 
         float mag = linearVelEffectOnMag.Evaluate(Mathf.Clamp01(lVel.magnitude / maxLinearVel)) * maxMagnitudeOfCompass;
-
         return dir * mag;
+
+        /*if (isBackwards)
+        {
+            return -dir * mag;
+        }
+        else
+        {
+            return dir * mag;
+        }*/
     }
 
     /// <summary>
@@ -247,7 +269,7 @@ public class LegIKSolver : MonoBehaviour
                 // Get direction as if root is parent 
                 Vector3 worldDir = forwardBone.TransformDirection(compassDirections[i]);
 
-                newCompass[i] = worldDir;
+                newCompass[i] = worldDir.normalized;
             }
             return newCompass;
         }

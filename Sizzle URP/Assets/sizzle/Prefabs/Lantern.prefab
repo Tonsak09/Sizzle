@@ -48,11 +48,11 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 5
-  m_AngularDrag: 2
+  m_AngularDrag: 7
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &3399652801675661111
 MonoBehaviour:
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBuoyancyForce: 20
   fallForce: 2
-  depthBeforeSubmerged: 0.7
+  depthBeforeSubmerged: 0.5
   layer:
     serializedVersion: 2
     m_Bits: 831
@@ -103,43 +103,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3399652801675661110}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b961ff6394c80594fb714b5086a396a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xAim: 0
-  yAim: 0
-  zAim: 0
-  adjustX: 1
-  adjustY: 0
-  adjustZ: 1
-  maxSpeed: 5
-  maxOffset: 0.8
-  offsetFromEulerAimCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  target: {x: 0, y: -1, z: 0}
+  torque: 35
 --- !u!65 &3399652801675661107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NonGrabbedColliders:
   - {fileID: 3399652801675661107}
+  - {fileID: 3399652802140972341}
   GrabbedColliders: []
 --- !u!1 &3399652802140972343
 GameObject:
@@ -229,7 +200,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: c712d411a7cd9d64cb808eccb20b4d32, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -325,7 +296,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 37231185211345355, guid: df2b02d4d3d455a4ba6c956a83f81310, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -427,6 +398,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -3020465348621284628, guid: 59420d2feaf2a164e9e038f954f9760e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 944651aa6b5bae9478cffaff459c9e3e, type: 2}
     - target: {fileID: 919132149155446097, guid: 59420d2feaf2a164e9e038f954f9760e, type: 3}
       propertyPath: m_Name
       value: fcs_sizzle_asset_lanternModel_V02

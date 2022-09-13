@@ -41,6 +41,6 @@ public class BodyAnimationManager : MonoBehaviour
 
     private void Update()
     {
-        print(currentHeadAnim);
+        //print(currentHeadAnim);
     }
 }
