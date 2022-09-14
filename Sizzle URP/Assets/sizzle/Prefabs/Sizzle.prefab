@@ -1474,7 +1474,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   stepMaxHeight: 0.3
   MaxDisFromFloor: 2
-  stepDistance: 0.2
+  stepDistance: 0.25
   footOffset: 0.1
   rangeAreaBeforeMove: {x: 0.14, y: 0.3}
   rayCheckStartOffset: {x: 0, y: -0.03, z: 0.1}
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   - {x: -0.31, y: 0, z: 0}
   - {x: 0.25, y: 0, z: 0}
   maxLinearVel: 5
-  maxMagnitudeOfCompass: 3
+  maxMagnitudeOfCompass: 1
   linearVelEffectOnMag:
     serializedVersion: 2
     m_Curve:
@@ -1544,7 +1544,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  showGizmos: 1
+  isBackwards: 0
+  showGizmos: 0
   rotValueTest: 2.17
 --- !u!1 &1288643250091984820
 GameObject:
@@ -1643,11 +1644,47 @@ MonoBehaviour:
   foot: {fileID: 4855294172498477204}
   heightCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 0.04766732
+      outSlope: 0.04766732
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7618821
+      value: 0.32346642
+      inSlope: -0.72770625
+      outSlope: -0.72770625
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28256813
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.9791212
+      outSlope: -1.9791212
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.0808779
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  stepMaxHeight: 0
+  stepMaxHeight: 0.2
   MaxDisFromFloor: 2
   stepDistance: 0.17
   footOffset: 0.1
@@ -1660,7 +1697,7 @@ MonoBehaviour:
   - {x: -0.31, y: 0, z: 0}
   - {x: 0.25, y: 0, z: 0}
   maxLinearVel: 4
-  maxMagnitudeOfCompass: 2
+  maxMagnitudeOfCompass: 4
   linearVelEffectOnMag:
     serializedVersion: 2
     m_Curve:
@@ -1710,7 +1747,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  showGizmos: 1
+  isBackwards: 0
+  showGizmos: 0
   rotValueTest: 0
 --- !u!1 &1288643250127403162
 GameObject:
@@ -1911,7 +1949,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   stepMaxHeight: 0.3
   MaxDisFromFloor: 2
-  stepDistance: 0.2
+  stepDistance: 0.25
   footOffset: 0.1
   rangeAreaBeforeMove: {x: 0.14, y: 0.3}
   rayCheckStartOffset: {x: 0, y: -0.03, z: 0.1}
@@ -1922,7 +1960,7 @@ MonoBehaviour:
   - {x: -0.31, y: 0, z: 0}
   - {x: 0.25, y: 0, z: 0}
   maxLinearVel: 5
-  maxMagnitudeOfCompass: 3
+  maxMagnitudeOfCompass: 1
   linearVelEffectOnMag:
     serializedVersion: 2
     m_Curve:
@@ -1981,6 +2019,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  isBackwards: 0
   showGizmos: 1
   rotValueTest: 2.17
 --- !u!1 &1288643250248906569
@@ -2210,7 +2249,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  stepMaxHeight: 0.1
+  stepMaxHeight: 0.2
   MaxDisFromFloor: 2
   stepDistance: 0.17
   footOffset: 0.1
@@ -2223,7 +2262,7 @@ MonoBehaviour:
   - {x: -0.31, y: 0, z: 0}
   - {x: 0.25, y: 0, z: 0}
   maxLinearVel: 4
-  maxMagnitudeOfCompass: 2
+  maxMagnitudeOfCompass: 4
   linearVelEffectOnMag:
     serializedVersion: 2
     m_Curve:
@@ -2273,6 +2312,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  isBackwards: 1
   showGizmos: 0
   rotValueTest: 0
 --- !u!1 &1348359377632397465
@@ -2480,8 +2520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frontBody: {fileID: 7450884251833034876}
-  moveForce: 500
-  torqueForce: 22000
+  moveForce: 400
+  torqueForce: 8000
   forward: {x: 0, y: 0, z: 0}
 --- !u!114 &2129968066
 MonoBehaviour:
@@ -2631,7 +2671,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   detectSpeed: 5
   detectStartSize: 0.05
-  detectTargetSize: 0.05
+  detectTargetSize: 0.07
   grabbable:
     serializedVersion: 2
     m_Bits: 64
@@ -2660,8 +2700,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparksFX: {fileID: 3512380908481708352, guid: ea78a777aabec0e419c29c1418110701, type: 3}
-  sparksOffsetFromNeck: {x: 0, y: 0, z: 0}
-  delayToSpawnSparks: 0
+  sparksOffsetFromNeck: {x: 0, y: 0, z: 0.7}
+  delayToSpawnSparks: 0.1
+  detectOffset: {x: 0, y: 0, z: 0.54}
+  detectRadius: 0.2
+  detectMask:
+    serializedVersion: 2
+    m_Bits: 55
+  checkSphere: {fileID: 6028576666699163757, guid: 49b30837db6077944bbf2a5916e6d2f3, type: 3}
   neckJoint: {fileID: 1288643249763778525}
   neckDefaultRot: {x: 0, y: 0, z: 0}
   neckTargetRot: {x: 30, y: 0, z: 0}
@@ -4371,6 +4417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 371897635880409018}
+  - component: {fileID: 1123363633}
   m_Layer: 3
   m_Name: elbow_frontLeft_joint
   m_TagString: Untagged
@@ -4394,6 +4441,20 @@ Transform:
   m_Father: {fileID: 8323325614149610883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1123363633
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668964163350237368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.02
+  m_Height: 0.19
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.12}
 --- !u!1 &4795454720307156514
 GameObject:
   m_ObjectHideFlags: 0
@@ -5296,6 +5357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3253999362646310617}
+  - component: {fileID: 597764116}
   m_Layer: 3
   m_Name: shoulder_frontRight_joint
   m_TagString: Untagged
@@ -5318,6 +5380,20 @@ Transform:
   m_Father: {fileID: 1288643250044768094}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &597764116
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228324772673977238}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.19
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.05}
 --- !u!1 &5342916363029124746
 GameObject:
   m_ObjectHideFlags: 0
@@ -5750,6 +5826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8487931778536765508}
+  - component: {fileID: 9580574}
   m_Layer: 3
   m_Name: elbow_frontRight_joint
   m_TagString: Untagged
@@ -5773,6 +5850,20 @@ Transform:
   m_Father: {fileID: 3253999362646310617}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &9580574
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5873776893557496208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.02
+  m_Height: 0.19
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.12}
 --- !u!1 &5944290804580564455
 GameObject:
   m_ObjectHideFlags: 0
@@ -6357,7 +6448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBuoyancyForce: 25
   fallForce: 50
-  depthBeforeSubmerged: 0.35
+  depthBeforeSubmerged: 0.3
   layer:
     serializedVersion: 2
     m_Bits: 55
@@ -7228,7 +7319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBuoyancyForce: 25
   fallForce: 50
-  depthBeforeSubmerged: 0.5
+  depthBeforeSubmerged: 0.4
   layer:
     serializedVersion: 2
     m_Bits: 55
@@ -7296,6 +7387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8323325614149610883}
+  - component: {fileID: 209134899}
   m_Layer: 3
   m_Name: shoulder_frontLeft_joint
   m_TagString: Untagged
@@ -7318,6 +7410,20 @@ Transform:
   m_Father: {fileID: 1288643249331282525}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &209134899
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401556251694512373}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.19
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.05}
 --- !u!1 &8431596224416399402
 GameObject:
   m_ObjectHideFlags: 0
