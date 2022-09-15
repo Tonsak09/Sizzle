@@ -4,20 +4,42 @@ using UnityEngine;
 
 public class Slime : Chargeable
 {
+
+    [SerializeField] Material mat;
+
+    [ColorUsage(false, true)]
+    public Color baseEmessiveColor;
+    [ColorUsage(false, true)]
+    public Color targetEmessiveColor;
+
+    //[SerializeField] HD baseEmessiveColor;
+    //[SerializeField] Color targetEmessiveColor;
+
+    [SerializeField] float emessivityEmpty;
+    [SerializeField] float emessivityFull; 
+
     private Rigidbody rb;
     private bool grounded;
+
+
 
     private void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+
     }
 
     public override void Desperse()
     {
         base.Desperse();
 
+        print((Vector4)baseEmessiveColor);
+
+        // Set emissivity from 0 - 10
+        mat.SetColor("_EmissionColor", Color.Lerp(baseEmessiveColor, targetEmessiveColor, Mathf.InverseLerp(0, maxCharge, currentCharge)));
+
         // Base virtual code will make sure it is never below 0 
-        if(currentCharge == 0)
+        if (currentCharge == 0)
         {
             return;
         }

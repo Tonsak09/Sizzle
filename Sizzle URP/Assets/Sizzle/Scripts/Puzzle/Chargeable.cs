@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Chargeable : MonoBehaviour
 {
-    [SerializeField] float desperseChargeSpeed;
+    [SerializeField] protected float desperseChargeSpeed;
+    [SerializeField] protected float maxCharge;
     protected private float currentCharge;
 
     // Only meant for debug to read 
@@ -15,8 +16,14 @@ public class Chargeable : MonoBehaviour
     /// </summary>
     public virtual void AddCharge(float chargeAmount)
     {
-        print("Adding charge");
-        currentCharge += chargeAmount;
+        if((currentCharge + chargeAmount) > maxCharge)
+        {
+            currentCharge = maxCharge;
+        }
+        else
+        {
+            currentCharge += chargeAmount;
+        }
     }
 
     /// <summary>
