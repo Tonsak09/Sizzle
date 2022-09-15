@@ -217,21 +217,16 @@ public class LegIKSolver : MonoBehaviour
 
         Vector3 dir = localizedCompass[0];
         //float initial = Vector3.Dot(lVel.normalized, localizedCompass[0]);
-        float hold = Vector3.Distance(lVel, localizedCompass[0]);
-
-        if (showGizmos)
-        {
-            //print(lVel - localizedCompass[1]);
-        }
+        float hold = Vector3.Dot(lVel.normalized, localizedCompass[0]);
 
         // Compare the unit direction of the lVel and see which it matches with the closest 
         for (int i = 1; i < localizedCompass.Length; i++)
         {
             // The bigger the dot product the more parrallel they are 
             //float current = Vector3.Dot(lVel.normalized, localizedCompass[i]);
-            float current = Vector3.Distance(lVel, localizedCompass[i]);
+            float current = Vector3.Dot(lVel.normalized, localizedCompass[i]);
 
-            if (current < hold) // Swapped sign
+            if (current > hold) // Swapped sign
             {
                 dir = localizedCompass[i];
                 hold = current;

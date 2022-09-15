@@ -194,7 +194,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.000000009866426, z: 0.016045451}
+  m_ConnectedAnchor: {x: 0, y: 0.00000045690126, z: 0.016045451}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   footOffset: 0.1
   rangeAreaBeforeMove: {x: 0.14, y: 0.3}
   rayCheckStartOffset: {x: 0, y: -0.03, z: 0.1}
-  IKHintOffset: {x: 0, y: -0.15, z: -0.16}
+  IKHintOffset: {x: 0.1, y: -0.15, z: -0.16}
   compassDirections:
   - {x: 0, y: 0, z: 0.3}
   - {x: -0.12, y: 0, z: -0.3}
@@ -1545,7 +1545,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   isBackwards: 0
-  showGizmos: 0
+  showGizmos: 1
   rotValueTest: 2.17
 --- !u!1 &1288643250091984820
 GameObject:
@@ -1684,20 +1684,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  stepMaxHeight: 0.2
+  stepMaxHeight: 0.3
   MaxDisFromFloor: 2
-  stepDistance: 0.17
+  stepDistance: 0.12
   footOffset: 0.1
   rangeAreaBeforeMove: {x: 0.14, y: 0.3}
   rayCheckStartOffset: {x: 0.05, y: 0, z: -0.14}
   IKHintOffset: {x: 0.16, y: -0.15, z: -0.27}
   compassDirections:
   - {x: 0, y: 0, z: 0.3}
-  - {x: -0.12, y: 0, z: -0.3}
+  - {x: 0, y: 0, z: -0.3}
   - {x: -0.31, y: 0, z: 0}
   - {x: 0.25, y: 0, z: 0}
   maxLinearVel: 4
-  maxMagnitudeOfCompass: 4
+  maxMagnitudeOfCompass: 3
   linearVelEffectOnMag:
     serializedVersion: 2
     m_Curve:
@@ -1748,7 +1748,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   isBackwards: 0
-  showGizmos: 0
+  showGizmos: 1
   rotValueTest: 0
 --- !u!1 &1288643250127403162
 GameObject:
@@ -1953,7 +1953,7 @@ MonoBehaviour:
   footOffset: 0.1
   rangeAreaBeforeMove: {x: 0.14, y: 0.3}
   rayCheckStartOffset: {x: 0, y: -0.03, z: 0.1}
-  IKHintOffset: {x: 0, y: -0.15, z: -0.16}
+  IKHintOffset: {x: -0.1, y: -0.15, z: -0.16}
   compassDirections:
   - {x: 0, y: 0, z: 0.3}
   - {x: -0.12, y: 0, z: -0.3}
@@ -2249,20 +2249,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  stepMaxHeight: 0.2
+  stepMaxHeight: 0.3
   MaxDisFromFloor: 2
-  stepDistance: 0.17
+  stepDistance: 0.12
   footOffset: 0.1
   rangeAreaBeforeMove: {x: 0.14, y: 0.3}
   rayCheckStartOffset: {x: 0.05, y: 0, z: -0.14}
   IKHintOffset: {x: -0.16, y: -0.15, z: -0.27}
   compassDirections:
   - {x: 0, y: 0, z: 0.3}
-  - {x: -0.12, y: 0, z: -0.3}
+  - {x: 0, y: 0, z: -0.3}
   - {x: -0.31, y: 0, z: 0}
   - {x: 0.25, y: 0, z: 0}
   maxLinearVel: 4
-  maxMagnitudeOfCompass: 4
+  maxMagnitudeOfCompass: 3
   linearVelEffectOnMag:
     serializedVersion: 2
     m_Curve:
@@ -2313,7 +2313,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   isBackwards: 1
-  showGizmos: 0
+  showGizmos: 1
   rotValueTest: 0
 --- !u!1 &1348359377632397465
 GameObject:
@@ -3496,7 +3496,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.9017583e-12, y: -0.0000000020954758, z: 0.44578505}
+  m_ConnectedAnchor: {x: 1.9018242e-12, y: -0.00000006170012, z: 0.44578505}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4104,7 +4104,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.0971346e-13, y: 0.000000012485543, z: 0.5027559}
+  m_ConnectedAnchor: {x: 3.092524e-13, y: 0.00000042971806, z: 0.5027559}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4792,7 +4792,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.6518201e-13, y: -0.000000015832484, z: 0.07700084}
+  m_ConnectedAnchor: {x: 1.6518201e-13, y: 0.00000036787242, z: 0.07700078}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -5116,7 +5116,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.000000005847596, z: -0.017997026}
+  m_ConnectedAnchor: {x: 0, y: -0.0000004230801, z: -0.017997026}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -7221,7 +7221,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.2325951e-33, y: 0.000000014202669, z: 0.40708005}
+  m_ConnectedAnchor: {x: -1.2325951e-33, y: 0.00000022281893, z: 0.40708005}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0

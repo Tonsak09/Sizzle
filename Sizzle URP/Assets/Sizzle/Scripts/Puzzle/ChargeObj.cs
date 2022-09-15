@@ -2,28 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Charges objects that it comes in contact with 
 public class ChargeObj : MonoBehaviour
 {
-    /*[Header("Detection")]
-    [SerializeField] float detectRadius;
-    [SerializeField] LayerMask chargeLayer;
-
-    [Header("Charging")]
-    [SerializeField] float chargeRate;
-    [SerializeField] float desperseRate;*/
+    
+    [SerializeField] float chargeAmount;
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.name);
+        Chargeable objChargeable = other.GetComponent<Chargeable>();
 
-        if (other.gameObject.tag == "Slime")
+        if (objChargeable != null)
         {
-            other.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-5, 5), Random.Range(5, 10), Random.Range(-5, 5)), ForceMode.Impulse);
+            objChargeable.AddCharge(chargeAmount);
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnTriggerStay(Collider other)
     {
-        //Gizmos.DrawWireSphere(this.transform.position, detectRadius);
+        // Some chargeables exit by "destroy" so this is current solution TODO: Change to hold in local array 
+        Chargeable objChargeable = other.GetComponent<Chargeable>();
+
+        if (objChargeable != null)
+        {
+            // Staying in the charge filed continues to add charge 
+            objChargeable.AddCharge(chargeAmount * Time.deltaTime);
+        }
     }
 }
