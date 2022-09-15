@@ -290,6 +290,7 @@
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Animation.Rigging.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Burst.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Mathematics.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.ProBuilder.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.RenderPipeline.Universal.ShaderLibrary.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.RenderPipelines.Core.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.RenderPipelines.Core.ShaderLibrary.ref.dll"
@@ -331,8 +332,8 @@
 "Assets/sizzle/Scripts/Sizzle/LegsController.cs"
 "Assets/sizzle/Scripts/Sizzle/SkeletonController.cs"
 "Assets/sizzle/Scripts/Sizzle/Sparks.cs"
+"Assets/sizzle/Scripts/Slime.cs"
 "Assets/sizzle/Scripts/Sound/SoundOnParticleDeath.cs"
-"Assets/sizzle/Slime.cs"
 -langversion:8.0
 
 /deterministic

@@ -117,6 +117,7 @@ Library: lib_burst_generated
 --compilation-defines=CINEMACHINE_LWRP_7_3_1
 --compilation-defines=CINEMACHINE_UNITY_ANIMATION
 --compilation-defines=CINEMACHINE_UNITY_IMGUI
+--compilation-defines=USING_PARTICLE_SYSTEM
 --linker-options=PdbAltPath="Sizzle URP_Data/Plugins/x86_64"
 --output=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
@@ -130,10 +131,15 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.Animation.Rigging.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Poly2Tri.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Cinemachine.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Csg.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.KdTree.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.ShaderLibrary.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Stl.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
 --assembly-folder=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\
@@ -272,6 +278,7 @@ Library: lib_burst_generated
 --compilation-defines=CINEMACHINE_LWRP_7_3_1
 --compilation-defines=CINEMACHINE_UNITY_ANIMATION
 --compilation-defines=CINEMACHINE_UNITY_IMGUI
+--compilation-defines=USING_PARTICLE_SYSTEM
 --linker-options=PdbAltPath="Sizzle URP_Data/Plugins/x86_64"
 --output=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
@@ -285,10 +292,15 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.Animation.Rigging.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Poly2Tri.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Cinemachine.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Csg.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.KdTree.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.ShaderLibrary.dll
+--root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Stl.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll
 --root-assembly=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
 --assembly-folder=C:\Users\Narai\Documents\GitHub\Sizzle\Sizzle URP\Temp\StagingArea\Data\Managed\
