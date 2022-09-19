@@ -59,10 +59,13 @@ public class Sparks : MonoBehaviour
     /// </summary>
     private void TryToSparks()
     {
-        if (!Physics.CheckSphere(neckJoint.transform.position + neckJoint.transform.TransformDirection(detectOffset), detectRadius, detectMask))
+        // Tries to animate the sparks if possible 
+        animaManager.TryAnimateHead(HeadAnimation(), ANIMKEY);
+
+        /*if (!Physics.CheckSphere(neckJoint.transform.position + neckJoint.transform.TransformDirection(detectOffset), detectRadius, detectMask))
         {
             animaManager.TryAnimateHead(HeadAnimation(), ANIMKEY);
-        }
+        }*/
     }
 
 

@@ -8,25 +8,34 @@ public class ChargeObj : MonoBehaviour
     
     [SerializeField] float chargeAmount;
 
+    public bool active;
+
     private void OnTriggerEnter(Collider other)
     {
-        Chargeable objChargeable = other.GetComponent<Chargeable>();
-
-        if (objChargeable != null)
+        if(active)
         {
-            objChargeable.AddCharge(chargeAmount);
+            Chargeable objChargeable = other.GetComponent<Chargeable>();
+
+            if (objChargeable != null)
+            {
+                objChargeable.AddCharge(chargeAmount);
+                print(other.name);
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        // Some chargeables exit by "destroy" so this is current solution TODO: Change to hold in local array 
-        Chargeable objChargeable = other.GetComponent<Chargeable>();
-
-        if (objChargeable != null)
+        if(active)
         {
-            // Staying in the charge filed continues to add charge 
-            objChargeable.AddCharge(chargeAmount * Time.deltaTime);
+            // Some chargeables exit by "destroy" so this is current solution TODO: Change to hold in local array 
+            Chargeable objChargeable = other.GetComponent<Chargeable>();
+
+            if (objChargeable != null)
+            {
+                // Staying in the charge filed continues to add charge 
+                objChargeable.AddCharge(chargeAmount * Time.deltaTime);
+            }
         }
     }
 }

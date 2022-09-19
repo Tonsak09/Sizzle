@@ -6,6 +6,14 @@ public class Chargeable : MonoBehaviour
 {
     [SerializeField] protected float desperseChargeSpeed;
     [SerializeField] protected float maxCharge;
+
+    [ColorUsage(false, true)]
+    [SerializeField] Color baseEmessiveColor;
+    [ColorUsage(false, true)]
+    [SerializeField] Color targetEmessiveColor;
+
+    [SerializeField] Renderer renderer;
+
     protected private float currentCharge;
 
     // Only meant for debug to read 
@@ -31,9 +39,16 @@ public class Chargeable : MonoBehaviour
     /// </summary>
     public virtual void Desperse()
     {
-        if(currentCharge <= 0)
+
+        // Set emissivity from 0 - 10
+        renderer.material.SetColor("_EmissionColor", Color.Lerp(baseEmessiveColor, targetEmessiveColor, Mathf.InverseLerp(0, maxCharge, currentCharge)));
+
+        // Base virtual code will make sure it is never below 0 
+        if (currentCharge <= 0)
         {
+            // No longer charges other chargeables 
             currentCharge = 0;
+
             return;
         }
 
