@@ -708,6 +708,23 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1746581083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2099600900075649836, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+  m_PrefabInstance: {fileID: 230286522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1746581091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746581083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ad327df279d2f44b5b36ec85bf795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1912438205
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desperseChargeSpeed: 10
   maxCharge: 100
-  baseEmessiveColor: {r: 1.4980392, g: 0.7764706, b: 0.19607843, a: 0}
+  baseEmessiveColor: {r: 1.7207954, g: 0.8919306, b: 0.225235, a: 0}
   targetEmessiveColor: {r: 95.87451, g: 49.69412, b: 12.54902, a: 0}
   renderer: {fileID: 8155262349806645778}
   CurrentCharge: 0

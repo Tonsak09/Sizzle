@@ -5,8 +5,15 @@ using UnityEngine;
 public class BodyAnimationManager : MonoBehaviour
 {
 
-    private Coroutine currentHeadAnim;
-    private string key;
+    //private Coroutine currentHeadAnim;
+    //private string key;
+
+    private Dictionary<string, Coroutine> animations;
+
+    private void Start()
+    {
+        animations = new Dictionary<string, Coroutine>();
+    }
 
     /// <summary>
     /// Tries to animate the head if it is free to do so
@@ -16,7 +23,33 @@ public class BodyAnimationManager : MonoBehaviour
     /// <returns></returns>
     public bool TryAnimateHead(IEnumerator anim, string _key, bool priority = false)
     {
-        if(currentHeadAnim == null || priority == true)
+        // Animation is already contained 
+        if(animations.ContainsKey(_key))
+        {
+            if(animations[_key] == null)
+            {
+                animations[_key] = StartCoroutine(anim);
+                return true;
+            }
+            else if(priority == true)
+            {
+                // Priorty ends held animation then plays passed 
+                EndAnimation(_key);
+                animations[_key] = StartCoroutine(anim);
+                return true;
+            }
+        }
+        else
+        {
+            // Sets new container 
+            animations.Add(_key, StartCoroutine(anim));
+            return true;
+        }
+
+        // Default 
+        return false; 
+
+        /*if(currentHeadAnim == null || priority == true)
         {
             key = _key;
             currentHeadAnim = StartCoroutine(anim);
@@ -25,16 +58,19 @@ public class BodyAnimationManager : MonoBehaviour
         else
         {
             return false;
-        }
+        }*/
     }
 
     public void EndAnimation(string _key)
     {
-        //print("Trying to end");
-        if(key == _key)
+        if (animations.ContainsKey(_key))
         {
-            StopCoroutine(currentHeadAnim);
-            currentHeadAnim = null;
+            // Animation is stored  
+            if (animations[_key] != null)
+            {
+                StopCoroutine(animations[_key]);
+            }
+            animations[_key] = null;
         }
     }
 
