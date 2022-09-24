@@ -8,6 +8,8 @@ public class LimbCopy : MonoBehaviour
     [SerializeField] Transform boneTarget;
     [SerializeField] bool isConfigurableJoint;
 
+    [SerializeField] Vector3 rotOffset;
+
     private ConfigurableJoint CJoint;
 
 
@@ -30,7 +32,7 @@ public class LimbCopy : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if(isConfigurableJoint)
         {
@@ -43,11 +45,11 @@ public class LimbCopy : MonoBehaviour
         // Makes the target copy this bone rotations
         if(isConfigurableJoint)
         {
-            CJoint.targetRotation = this.transform.rotation;
+            CJoint.targetRotation = Quaternion.Inverse(Quaternion.Euler(this.transform.eulerAngles + rotOffset));
         }
         else
         {
-
+            boneTarget.rotation = Quaternion.Inverse(this.transform.rotation);
         }
     }
 }

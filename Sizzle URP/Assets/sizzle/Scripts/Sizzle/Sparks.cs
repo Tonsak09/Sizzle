@@ -37,7 +37,7 @@ public class Sparks : MonoBehaviour
     [SerializeField] AnimationCurve jawCloseAnimCurve;
     [SerializeField] float jawSpeed;
 
-    private const string ANIMKEY = "Sparks";
+    private const string ANIMKEY = "Head";
     private BodyAnimationManager animaManager; 
 
     private void Start()
@@ -60,7 +60,7 @@ public class Sparks : MonoBehaviour
     private void TryToSparks()
     {
         // Tries to animate the sparks if possible 
-        animaManager.TryAnimateHead(HeadAnimation(), ANIMKEY);
+        animaManager.TryAnimation(HeadAnimation(), ANIMKEY);
 
         /*if (!Physics.CheckSphere(neckJoint.transform.position + neckJoint.transform.TransformDirection(detectOffset), detectRadius, detectMask))
         {

@@ -43,23 +43,33 @@ public class Grab : MonoBehaviour
     [SerializeField] float detectTargetSize;
 
     [SerializeField] LayerMask grabbable;
+    // used to pass the function from this class into the animation which is handeled by the bodyanimmanager
+    // Needs to be done because lerp value constatly changes 
+    private delegate void logic(float lerp); 
 
 
-    // The lerp between a mouth open and closed 
-    private float neckLerp;
-    private float jawLerp;
     private float detectLerp;
     
 
     private Transform heldItem;
 
-    private void Update()
+    private const string ANIMKEY = "Head";
+    private BodyAnimationManager animaManager;
+
+    private void Start()
     {
-        AnimateJaw();
-        GrabLogic();
+        animaManager = this.GetComponent<BodyAnimationManager>();
     }
 
-    private void GrabLogic()
+    private void Update()
+    {
+        if(Input.GetMouseButton(1))
+        {
+            animaManager.TryAnimation(AnimateJaw(GrabLogic), ANIMKEY);
+        }
+    }
+
+    private void GrabLogic(float jawLerp)
     {
         if (Input.GetMouseButton(1))
         {
@@ -120,11 +130,40 @@ public class Grab : MonoBehaviour
         }
     }
 
-    private void AnimateJaw()
+   /* private void AnimateJaw()
     {
         // On right click hold 
         if (Input.GetMouseButton(1))
         {
+            // If it is possible to animate 
+            if(animaManager.TryAnimation(AnimateJaw(), ANIMKEY))
+            {
+                
+            }
+        }
+        else
+        {
+
+            // If it is possible to animate 
+            if (animaManager.TryAnimation(AnimateJaw(), ANIMKEY))
+            {
+
+            }
+
+            
+        }
+    }*/
+
+    private IEnumerator AnimateJaw(logic jawLogic)
+    {
+        // The lerp between a mouth open and closed 
+        float neckLerp = 0;
+        float jawLerp = 0;
+
+
+        while(Input.GetMouseButton(1))
+        {
+
             // Continues unless fully open 
             if (neckLerp < 1)
             {
@@ -134,7 +173,7 @@ public class Grab : MonoBehaviour
             {
                 jawLerp += JawOpenSpeed * Time.deltaTime;
             }
-            if(detectLerp < 1)
+            if (detectLerp < 1)
             {
                 detectLerp += detectSpeed * Time.deltaTime;
             }
@@ -142,8 +181,13 @@ public class Grab : MonoBehaviour
             // Applys the rotation 
             neckJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(neckDefaultRot, neckTargetRot, neckOpenAnimCurve.Evaluate(neckLerp)));
             jawJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(jawDefaultRot, jawTargetRot, jawOpenAnimCurve.Evaluate(jawLerp)));
+
+            jawLogic(jawLerp);
+
+            yield return null;
         }
-        else
+
+        while(!Input.GetMouseButton(1))
         {
             // Continues unless fully closed 
             if (neckLerp > 0)
@@ -162,19 +206,28 @@ public class Grab : MonoBehaviour
             // Applys the rotation 
             neckJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(neckDefaultRot, neckTargetRot, neckCloseAnimCurve.Evaluate(neckLerp)));
             jawJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(jawDefaultRot, jawTargetRot, jawCloseAnimCurve.Evaluate(jawLerp)));
+
+            if(neckLerp <= 0 && jawLerp <= 0 && detectLerp <= 0)
+            {
+                break;
+            }
+
+            yield return null;
         }
+
+        animaManager.EndAnimation(ANIMKEY);
     }
 
     private void OnDrawGizmos()
     {
-        if (jawLerp >= jawLerpRange.x && jawLerp <= jawLerpRange.y)
+        /*if (jawLerp >= jawLerpRange.x && jawLerp <= jawLerpRange.y)
         {
             Gizmos.color = Color.green;
         }
         else
         {
             Gizmos.color = Color.red;
-        }
+        }*/
 
         Gizmos.DrawWireSphere(neckJoint.transform.position + 
             neckJoint.transform.TransformDirection(Vector3.Lerp(detectStartOffset, detectTargetOffset, detectOffsetAnimCurve.Evaluate(detectLerp))),

@@ -21,7 +21,7 @@ public class BodyAnimationManager : MonoBehaviour
     /// <param name="anim">The coroutine animation that is passed</param>
     /// <param name="priority">Will ovveride the current animation playing and immediatly go to the passed animation</param>
     /// <returns></returns>
-    public bool TryAnimateHead(IEnumerator anim, string _key, bool priority = false)
+    public bool TryAnimation(IEnumerator anim, string _key, bool priority = false)
     {
         // Animation is already contained 
         if(animations.ContainsKey(_key))
