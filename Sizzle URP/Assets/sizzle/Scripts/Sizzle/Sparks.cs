@@ -37,12 +37,20 @@ public class Sparks : MonoBehaviour
     [SerializeField] AnimationCurve jawCloseAnimCurve;
     [SerializeField] float jawSpeed;
 
+    [Header("Sounds")]
+    [SerializeField] AudioClip sparkStartHiss;
+
+    [SerializeField] float lerpCloseToPlayMouth;
+    [SerializeField] AudioClip[] closeMouthNoises;
+
     private const string ANIMKEY = "Head";
-    private BodyAnimationManager animaManager; 
+    private BodyAnimationManager animaManager;
+    private SoundManager sm;
 
     private void Start()
     {
         animaManager = this.GetComponent<BodyAnimationManager>();
+        sm = GameObject.FindObjectOfType<SoundManager>();
     }
 
     private void Update()
@@ -60,7 +68,10 @@ public class Sparks : MonoBehaviour
     private void TryToSparks()
     {
         // Tries to animate the sparks if possible 
-        animaManager.TryAnimation(HeadAnimation(), ANIMKEY);
+        if(animaManager.TryAnimation(HeadAnimation(), ANIMKEY))
+        {
+            sm.PlaySoundFX(sparkStartHiss, neckJoint.targetPosition, "Hiss");
+        }
 
         /*if (!Physics.CheckSphere(neckJoint.transform.position + neckJoint.transform.TransformDirection(detectOffset), detectRadius, detectMask))
         {
@@ -92,6 +103,7 @@ public class Sparks : MonoBehaviour
             yield return null;
         }
 
+        bool playedClose = false; // Whether the mouth close sound has been played 
         // Closing 
         while(neckLerp > 0 && jawLerp > 0)
         {
@@ -101,8 +113,19 @@ public class Sparks : MonoBehaviour
             // Sets lerp to animation curve
             neckJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(neckDefaultRot, neckTargetRot, neckCloseAnimCurve.Evaluate(neckLerp)));
             jawJoint.targetRotation = Quaternion.Euler(Vector3.Lerp(jawDefaultRot, jawTargetRot, jawCloseAnimCurve.Evaluate(jawLerp)));
+
+            if(!playedClose)
+            {
+                if(lerpCloseToPlayMouth > jawLerp)
+                {
+                    sm.PlaySoundFX(closeMouthNoises[Random.Range(0, closeMouthNoises.Length)], neckJoint.targetPosition, "Mouth");
+                    playedClose = true;
+                }
+            }
+
             yield return null;
         }
+
         animaManager.EndAnimation(ANIMKEY);
     }
 

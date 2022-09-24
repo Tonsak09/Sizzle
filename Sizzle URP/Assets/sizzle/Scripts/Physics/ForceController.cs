@@ -25,6 +25,9 @@ public class ForceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         // Sets forward as cam to target body and then projected 
         //forward = ForwardFromCamToTarget();
         float VInput = Input.GetAxis("Vertical");

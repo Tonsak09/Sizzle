@@ -43,22 +43,25 @@ public class Grab : MonoBehaviour
     [SerializeField] float detectTargetSize;
 
     [SerializeField] LayerMask grabbable;
+
+    [Header("Sounds")]
+    [SerializeField] AudioClip biteSound;
+
+
     // used to pass the function from this class into the animation which is handeled by the bodyanimmanager
     // Needs to be done because lerp value constatly changes 
     private delegate void logic(float lerp); 
-
-
     private float detectLerp;
-    
-
     private Transform heldItem;
-
     private const string ANIMKEY = "Head";
     private BodyAnimationManager animaManager;
+    private SoundManager sm;
 
     private void Start()
     {
         animaManager = this.GetComponent<BodyAnimationManager>();
+
+        sm = GameObject.FindObjectOfType<SoundManager>();
     }
 
     private void Update()
@@ -209,8 +212,11 @@ public class Grab : MonoBehaviour
 
             if(neckLerp <= 0 && jawLerp <= 0 && detectLerp <= 0)
             {
+                //sm.PlaySoundFX(biteSound, neckJoint.targetPosition, "Bite");
                 break;
             }
+
+            jawLogic(jawLerp);
 
             yield return null;
         }
