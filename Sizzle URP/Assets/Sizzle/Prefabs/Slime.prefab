@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4762966131257001015}
   - component: {fileID: 6962746866279458603}
   - component: {fileID: 191432296516063569}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slime
   m_TagString: Slime
   m_Icon: {fileID: 0}
@@ -81,10 +81,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desperseChargeSpeed: 15
   maxCharge: 40
-  CurrentCharge: 0
   baseEmessiveColor: {r: 0.06886086, g: 0.5566038, b: 0, a: 1}
   targetEmessiveColor: {r: 4.0156865, g: 95.87451, b: 0, a: 1}
   renderer: {fileID: 6170951096067510578}
+  CurrentCharge: 0
   co: {fileID: -4762966131257001015}
 --- !u!114 &-4762966131257001015
 MonoBehaviour:
@@ -181,9 +181,45 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a79990d44e2f16549833a33089af73ce, type: 2}
+    - target: {fileID: -3234546781908813351, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3134442647051899058, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1345717227700365828, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -193628072289501587, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 613778694780980539, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 889252646489208768, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
       propertyPath: m_Name
       value: Slime Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271122496631836643, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629465106237826972, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d299e09db955bf148b1144d7d7755fc6, type: 3}

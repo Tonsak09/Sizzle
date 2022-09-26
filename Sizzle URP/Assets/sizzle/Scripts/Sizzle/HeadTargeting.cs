@@ -5,7 +5,6 @@ using UnityEngine;
 public class HeadTargeting : MonoBehaviour
 {
     
-    [SerializeField] InterestZone zone;
     [SerializeField] Grab grab;
     [SerializeField] Transform compass;
     [SerializeField] Transform target;
