@@ -18,9 +18,6 @@ public class CamZone : MonoBehaviour
 
 
 
-
-
-
     // This object can only interact with the Sizzle layer
 
     private void OnTriggerEnter(Collider other)

@@ -14,6 +14,7 @@ public class Buoyancy : MonoBehaviour
 
     private Rigidbody rb;
 
+    public float DepthBeforeSubmerged { get { return depthBeforeSubmerged; } set { depthBeforeSubmerged = value; } }
 
     // Start is called before the first frame update
     void Start()
