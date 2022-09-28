@@ -223,10 +223,10 @@ MonoBehaviour:
   rootRefernce: {fileID: 1551275928}
   waveDisplacement: 0.3
   walkMaxLegSpeed: 5
-  walkMinFreq: 1
-  walkMaxFreq: 2
+  walkMinFreq: 0
+  walkMaxFreq: 2.75
   walkMinMag: 0
-  walkMaxMag: 0.5
+  walkMaxMag: 0.9
   walkMaxSqrMag: 5
   walkCurve:
     serializedVersion: 2
@@ -1485,7 +1485,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396286456}
-  m_LocalRotation: {x: 0.18957242, y: -0.000000008447167, z: 0.0000000016308329, w: 0.9818668}
+  m_LocalRotation: {x: 0.18957241, y: 0.000000008447168, z: -0.0000000016308349, w: 0.9818668}
   m_LocalPosition: {x: 0.42122257, y: 3.023036, z: -4.927211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2165,15 +2165,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6065804894118284782, guid: 4da8cb8f6b7edd44ea893859c5aa9d85, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.18957244
+      value: 0.18957242
       objectReference: {fileID: 0}
     - target: {fileID: 6065804894118284782, guid: 4da8cb8f6b7edd44ea893859c5aa9d85, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008447187
+      value: 0.000000008447187
       objectReference: {fileID: 0}
     - target: {fileID: 6065804894118284782, guid: 4da8cb8f6b7edd44ea893859c5aa9d85, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000001630928
+      value: -0.0000000016309277
       objectReference: {fileID: 0}
     - target: {fileID: 6065804894336609168, guid: 4da8cb8f6b7edd44ea893859c5aa9d85, type: 3}
       propertyPath: m_Follow
