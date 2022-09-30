@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Sizzle/Scenes/TestBodyScene.unity
+- path: Assets/Sizzle/Scenes/GrayBox.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
