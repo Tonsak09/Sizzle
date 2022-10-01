@@ -27,15 +27,15 @@
                 "m_Settings": {
                     "UxmlGuid": "a38d5728ca3f90349969102b8e293a32",
                     "UxmlPath": "Assets/Sizzle/Scripts/Editor/BodyAnimationEditor.uxml",
-                    "CanvasX": 0,
+                    "CanvasX": 45,
                     "CanvasY": 0,
-                    "CanvasWidth": 350,
+                    "CanvasWidth": 305,
                     "CanvasHeight": 450,
                     "MatchGameView": false,
-                    "ZoomScale": 1.0,
+                    "ZoomScale": 2.0,
                     "PanOffset": {
-                        "x": 66.5,
-                        "y": 173.0
+                        "x": -217.77178955078126,
+                        "y": 249.96658325195313
                     },
                     "ColorModeBackgroundOpacity": 1.0,
                     "ImageModeCanvasBackgroundOpacity": 1.0,

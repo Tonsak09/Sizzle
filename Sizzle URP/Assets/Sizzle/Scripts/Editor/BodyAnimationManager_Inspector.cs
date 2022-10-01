@@ -1,11 +1,13 @@
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 [CustomEditor(typeof(BodyAnimationManager))]
 public class BodyAnimationManager_Inspector : Editor
 {
     public VisualTreeAsset InspectorXML;
+    private static List<AnimationSection> m_SectionDatabase = new List<AnimationSection>();
 
     public override VisualElement CreateInspectorGUI()
     {

@@ -360,6 +360,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
+"Assets/Sizzle/Scripts/Editor/AnimationSection.cs"
 "Assets/Sizzle/Scripts/Editor/BodyAnimationManager_Inspector.cs"
 -langversion:8.0
 

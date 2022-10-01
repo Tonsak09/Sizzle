@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class BodyAnimationManager : MonoBehaviour
 {
-
-    //private Coroutine currentHeadAnim;
-    //private string key;
-
     private Dictionary<string, Coroutine> animations;
 
     private void Start()
@@ -58,14 +54,10 @@ public class BodyAnimationManager : MonoBehaviour
             if (animations[_key] != null)
             {
                 StopCoroutine(animations[_key]);
+                animations[_key] = null;
             }
-            animations[_key] = null;
+            
+            // No need to do anything if already null
         }
-    }
-
-
-    private void Update()
-    {
-        //print(currentHeadAnim);
     }
 }

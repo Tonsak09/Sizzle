@@ -40,4 +40,11 @@ public class PoseCopyManager : MonoBehaviour
             body[i].UpdateTarget(originalValuesBody[i]);
         }
     }
+
+
+
+
+
+    // needs to work via ienumators 
+    // Take in multiple animations using parts 
 }
