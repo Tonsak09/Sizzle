@@ -10,7 +10,7 @@ public class PoseCopyManager : MonoBehaviour
 
     private Quaternion[] originalValuesBody;
 
-
+    // hard selections that cannot be changed in the 
     private enum SizzleSections
     {
         neck,

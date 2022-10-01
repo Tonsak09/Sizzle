@@ -48,17 +48,6 @@ public class BodyAnimationManager : MonoBehaviour
 
         // Default 
         return false; 
-
-        /*if(currentHeadAnim == null || priority == true)
-        {
-            key = _key;
-            currentHeadAnim = StartCoroutine(anim);
-            return true;
-        }
-        else
-        {
-            return false;
-        }*/
     }
 
     public void EndAnimation(string _key)

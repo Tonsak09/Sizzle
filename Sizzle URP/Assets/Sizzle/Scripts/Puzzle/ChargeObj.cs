@@ -34,7 +34,14 @@ public class ChargeObj : MonoBehaviour
             if (objChargeable != null)
             {
                 // Staying in the charge filed continues to add charge 
-                objChargeable.AddCharge(chargeAmount * Time.deltaTime);
+                if(other.tag == "Slime")
+                {
+                    ((Slime)objChargeable).AddCharge(chargeAmount * Time.deltaTime, (other.transform.position - this.transform.position).normalized);
+                }
+                else
+                {
+                    objChargeable.AddCharge(chargeAmount * Time.deltaTime);
+                }
             }
         }
     }
