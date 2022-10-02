@@ -31,6 +31,6 @@ public class ConfigurableJointPoseCopy : PoseCopy
     /// <param name="originalValue"></param>
     public override void UpdateTarget(Quaternion originalValue)
     {
-        CJoint.targetRotation = Quaternion.Inverse(Quaternion.Euler(this.transform.eulerAngles + rotOffset));
+        CJoint.targetRotation = Quaternion.Inverse(Quaternion.Euler(this.transform.localEulerAngles + rotOffset));
     }
 }

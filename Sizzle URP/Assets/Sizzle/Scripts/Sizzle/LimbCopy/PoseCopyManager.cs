@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoseCopyManager : MonoBehaviour
 {
-    private Animator animator;
+    /*private Animator animator;
     public AnimationClip clipTest;
 
     private void Start()
@@ -19,6 +19,8 @@ public class PoseCopyManager : MonoBehaviour
         {
             print("Base Layer." + clipTest.name);
             animator.Play(clipTest.name);
+            
+            
         }
     }
 
@@ -51,16 +53,22 @@ public class PoseCopyManager : MonoBehaviour
 
 
         yield return null;
-    }
+    }*/
 
 
 
 
     // Old
-    /*[SerializeField] List<PoseCopy> body;
+    [SerializeField] List<PoseCopy> body;
     [SerializeField] List<PoseCopy> legs;
 
+    
+
+    private Animator animator;
+    public AnimationClip clipTest;
+
     private Quaternion[] originalValuesBody;
+
 
     // hard selections that cannot be changed in the 
     private enum SizzleSections
@@ -76,7 +84,9 @@ public class PoseCopyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         originalValuesBody = new Quaternion[body.Count];
+
 
         for (int i = 0; i < body.Count; i++)
         {
@@ -87,10 +97,16 @@ public class PoseCopyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print("Base Layer." + clipTest.name);
+            animator.Play(clipTest.name);
+        }
+
         for (int i = 0; i < body.Count; i++)
         {
             body[i].UpdateTarget(originalValuesBody[i]);
         }
-    }*/
+    }
 
 }
