@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3512380908481708366}
   - component: {fileID: 3512380908481708353}
   - component: {fileID: -6761795686313510538}
+  - component: {fileID: 6077102035608636553}
   m_Layer: 8
   m_Name: MainSparks
   m_TagString: Untagged
@@ -4977,6 +4978,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6077102035608636553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512380908481708352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e1f38fddaa0b442a39c58ff255e0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBirthSounds: []
+  OnDeathSounds:
+  - {fileID: 8300000, guid: eaf7bb5a2363d5840b8ac7af97b78d46, type: 3}
+  - {fileID: 8300000, guid: dfedb8d8c58651b49b3ca712099e1339, type: 3}
+  - {fileID: 8300000, guid: fb26f273c1e1ceb47a0c2878b28d659a, type: 3}
+  volume: 1
+  maxNumBirth: 0
+  maxNumDeath: 2
+  pitchMax: 1
+  pitchMin: 1
+  category: Crackle
 --- !u!1 &3512380909605767121
 GameObject:
   m_ObjectHideFlags: 0
@@ -9852,6 +9876,7 @@ GameObject:
   - component: {fileID: 5340475532836031238}
   - component: {fileID: 5340475532836031239}
   - component: {fileID: 5340475532836031236}
+  - component: {fileID: 4420750905237980818}
   m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
@@ -14706,3 +14731,26 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &4420750905237980818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340475532836031237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e1f38fddaa0b442a39c58ff255e0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBirthSounds:
+  - {fileID: 8300000, guid: 35c6bbea077c10a449321231e892f866, type: 3}
+  - {fileID: 8300000, guid: d5e193e260f0c2e48a904d0f99d8c1d6, type: 3}
+  - {fileID: 8300000, guid: 41917efda2a25134793a6f7bbdd71d30, type: 3}
+  OnDeathSounds: []
+  volume: 1
+  maxNumBirth: 2
+  maxNumDeath: 0
+  pitchMax: 1
+  pitchMin: 1
+  category: SizzleOut
