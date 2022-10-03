@@ -62,7 +62,7 @@ public class PoseCopyManager : MonoBehaviour
     [SerializeField] List<PoseCopy> body;
     [SerializeField] List<PoseCopy> legs;
 
-    
+    public PoseCopy midSegmenetCopy;
 
     private Animator animator;
     public AnimationClip clipTest;
@@ -101,6 +101,7 @@ public class PoseCopyManager : MonoBehaviour
         {
             print("Base Layer." + clipTest.name);
             animator.Play(clipTest.name);
+            StartCoroutine(PoseCopyAnimation(clipTest));
         }
 
         for (int i = 0; i < body.Count; i++)
@@ -109,4 +110,18 @@ public class PoseCopyManager : MonoBehaviour
         }
     }
 
+    private IEnumerator PoseCopyAnimation(AnimationClip clip)
+    {
+        float timer = clip.length;
+
+        midSegmenetCopy.RotOffset += Vector3.right * 6.494f;
+
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        midSegmenetCopy.RotOffset -= Vector3.right * 6.494f;
+    }
 }

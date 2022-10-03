@@ -16,6 +16,8 @@ public abstract class PoseCopy : MonoBehaviour
         }
     }
 
+    public Vector3 RotOffset { get { return rotOffset; } set { rotOffset = value; } }
+
     /// <summary>
     /// Sets the rotation of the target to this rotation 
     /// </summary>
