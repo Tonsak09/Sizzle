@@ -121,7 +121,12 @@ public class LegIKSolver : MonoBehaviour
         //IKStart.position = startFootPosition;
         IKHint.position = offsetedIKHint;
         end.position = target;
+    }
+
+    private void LateUpdate()
+    {
         ChooseCompassDir();
+
     }
 
     public void TryMove(float footSpeedMoving, float footSpeedNotMoving)

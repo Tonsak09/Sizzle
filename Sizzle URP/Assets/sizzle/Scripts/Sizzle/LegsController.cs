@@ -23,16 +23,20 @@ public class LegsController : MonoBehaviour
     private LegIKSolver[] frontPair;
     private LegIKSolver[] backPair;
 
+    public bool Active { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
         frontPair = new LegIKSolver[] { frontLeft, frontRight };
         backPair = new LegIKSolver[] { backLeft, backRight };
+
         /*
         frontLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
         backRight.TryMove(footSpeedMoving, footSpeedNotMoving);
         backLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
-        frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);*/
+        frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);
+        */
 
         StartCoroutine(LegUpdateCoroutine(frontPair));
         StartCoroutine(LegUpdateCoroutine(backPair));
@@ -69,31 +73,16 @@ public class LegsController : MonoBehaviour
 
     public IEnumerator LegUpdateCoroutine(LegIKSolver[] pair)
     {
-
-        bool current = true;
         // Index 
-        int index = 0;
         while (true)
         {
-            /*do
+            if (!Active)
             {
-                frontLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
-                backRight.TryMove(footSpeedMoving, footSpeedNotMoving);
-
                 yield return null;
-            } while (frontLeft.Moving || backRight.Moving);
-
-            do
-            {
-                backLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
-                frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);
-
-                yield return null;
-            } while (backLeft.Moving || frontRight.Moving);*/
-
+            }
 
             // Find primary leg moving
-            if(pair[0].Moving && !pair[1].Moving)
+            if (pair[0].Moving && !pair[1].Moving)
             {
                 if(pair[0].Lerp >= minlerpBeforePair)
                 {
@@ -112,16 +101,6 @@ public class LegsController : MonoBehaviour
                 // If neither are moving try to move one randomly 
                 pair[Random.Range(0, 2)].TryMove(footSpeedMoving, footSpeedNotMoving);
             }
-
-            /*if(pair[index].Moving)
-            {
-                if(pair[index].Lerp >= minlerpBeforePair)
-                {
-                    pair[current ? 1 : 0].TryMove(footSpeedMoving, footSpeedNotMoving);
-                }
-            }*/
-
-
 
             yield return null;
         }

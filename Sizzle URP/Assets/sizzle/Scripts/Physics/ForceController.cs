@@ -7,19 +7,44 @@ public class ForceController : MonoBehaviour
     [Header("References")]
     [SerializeField] Rigidbody frontBody;
 
-    [Header("Variables")]
+    [Header("Walking")]
     [SerializeField] float moveForce;
     [SerializeField] float torqueForce;
 
-    public Vector3 forward;
-    private Vector3 target;
+    [Header("Crouching")]
+    [SerializeField] KeyCode crouchkey;
+    [SerializeField] float moveForceCrouch;
+    [SerializeField] float torqueForceCrouch;
+    [SerializeField] float crouchSpeed;
 
-    public Vector3 ForwardVec { get { return forward; } set { forward = value.normalized; } }
+    private float crouchLerp;
+
+    [Header("Dash")]
+    [SerializeField] KeyCode dashKey;
+    [SerializeField] float dashForceImpulse;
+    [SerializeField] float dashForceContinuous;
+    [SerializeField] float dashTime;
+    [Tooltip("The minimum speed that Sizzle must maintain to stay in dash")]
+    [SerializeField] float minSqrtSpeedForDash;
+
+    [SerializeField] AnimationCurve dashForceoverLerp;
+
+    private Coroutine DashCo;
+
+
+    private Vector3 target;
+    [SerializeField] private states SizzleState;
+    private enum states
+    {
+        movement,
+        crouch,
+        dash
+    };
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SizzleState = states.movement;
     }
 
     // Update is called once per frame
@@ -27,58 +52,100 @@ public class ForceController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        float VInput = Input.GetAxis("Vertical");
+        float hInput = Input.GetAxis("Horizontal");
+        float dash = Input.GetAxis("Jump");
+        print(dash);
 
-        // Sets forward as cam to target body and then projected 
-        //forward = ForwardFromCamToTarget();
+        print(Input.GetKey(dashKey));
+        switch (SizzleState)
+        {
+            case states.movement:
+                ForceControl(moveForce, torqueForce);
+
+                if(Input.GetKey(crouchkey))
+                {
+                    // Change to crouch state 
+                    SizzleState = states.crouch;
+                }
+
+                break;
+            case states.crouch:
+
+                ForceControl(moveForceCrouch, torqueForceCrouch); // Slower Movement 
+                CrouchLogic();
+
+                break;
+            case states.dash:
+                break;
+
+        }
+        TryDash(); // Checks whether the dash state should begin 
+
+
+    }
+
+    /// <summary>
+    /// The basic controls of Sizzle that allow directional movement
+    /// and turning
+    /// </summary>
+    /// <param name="moveForce"></param>
+    /// <param name="torqueForce"></param>
+    private void ForceControl(float moveForce, float torqueForce)
+    {
+        // Get the input 
         float VInput = Input.GetAxis("Vertical");
         float hInput = Input.GetAxis("Horizontal");
 
         frontBody.AddTorque(torqueForce * frontBody.transform.up * hInput * Time.deltaTime, ForceMode.Acceleration);
         frontBody.AddForce(moveForce * frontBody.transform.forward * VInput * Time.deltaTime, ForceMode.Acceleration);
-
     }
 
-    private void ForceControl()
+    private void CrouchLogic()
     {
-        // Get the input 
-        float VInput = Input.GetAxis("Vertical");   // How much along the forward vector 
-        float HInput = Input.GetAxis("Horizontal"); // How much to the perpendicular of the forward vector
-
-        // Set the xz plane direction 
-        //Vector3 vector = forward * VInput + 
-        //transform.rotat
-        // Set vector to the body's normal 
-        
-        //body.AddForce(vector);
+        if(Input.GetKey(crouchkey))
+        {
+            crouchLerp += Time.deltaTime * crouchSpeed;
+        }
+        else if (Input.GetKeyUp(crouchkey))
+        {
+            SizzleState = states.movement;
+        }
     }
 
-    /*private Vector3 ForwardFromCamToTarget()
-    {
-        // Get Vector from currentCam to target
-        Vector3 camToTarget = body.transform.position - GameManager.CurrentCam.transform.position;
-
-        // Project to target normal 
-        Vector3 projCamToTarget = Vector3.ProjectOnPlane(camToTarget, body.transform.up);
-
-        // return projection 
-        return projCamToTarget.normalized;
-    }
-*/
-    private void OnDrawGizmos()
-    {
-        /*Gizmos.color = Color.white;
-        Gizmos.DrawLine(body.position, body.position + forward * 2);
-
-        Gizmos.color = Color.red;
-        Vector3 dirToTarget = target - body.transform.position;
-        Gizmos.DrawLine(body.position, body.position + dirToTarget);
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(body.position, Quaternion.Euler(body.transform.up * 90) * body.position + forward);*/
-    }
-
-    private void OnDrawGizmosSelected()
+    private void TryDash()
     {
         
+        // Activates the dash state 
+        if (Input.GetKeyDown(dashKey) && DashCo == null)
+        {
+            SizzleState = states.dash;
+            frontBody.AddForce(dashForceImpulse * frontBody.transform.forward, ForceMode.Impulse);
+
+            DashCo = StartCoroutine(DashSubroutine());
+        }
     }
+
+    private IEnumerator DashSubroutine()
+    {
+        float timer = dashTime;
+        while (timer >= 0)
+        {
+            /*if (frontBody.velocity.sqrMagnitude < minSqrtSpeedForDash)
+            {
+                // No longer fast enough
+                break;
+            }*/
+
+            frontBody.AddForce(dashForceContinuous * dashForceoverLerp.Evaluate((timer / dashTime)) * frontBody.transform.forward, ForceMode.Acceleration);
+
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        SizzleState = states.movement;
+        StopCoroutine(DashCo);
+        DashCo = null;
+    }
+
 }

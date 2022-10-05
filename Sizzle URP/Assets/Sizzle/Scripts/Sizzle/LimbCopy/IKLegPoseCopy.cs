@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IKLegPoseCopy : PoseCopy
+public class IKLegPoseCopy : MonoBehaviour
 {
-    [SerializeField] List<Transform> legJoints;
-    [SerializeField] Transform targetPoint;
 
+    // This class acts like a manager for the whole leg instead of having the
+    // main manager work on the individual joints and foot 
+    [SerializeField] List<PoseCopy> legJoints;
 
-    public override void UpdateTarget(Quaternion originalValue)
+    public void UpdateLeg()
     {
-        base.UpdateTarget(originalValue);
+
     }
+
+    /*public override void UpdateTarget()
+    {
+        base.UpdateTarget();
+    }*/
 
 }

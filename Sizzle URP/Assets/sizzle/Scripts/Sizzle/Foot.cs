@@ -14,8 +14,7 @@ public class Foot : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
         this.transform.position = root.position;
 
@@ -24,5 +23,8 @@ public class Foot : MonoBehaviour
         Physics.Raycast(this.transform.position, Vector3.down, out hit, 10, terrain);
 
         this.transform.forward = -hit.normal;
+
+        print(hit.normal);
+
     }
 }

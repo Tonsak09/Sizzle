@@ -19,8 +19,7 @@ public class PoseCopyHeightToBuoyancy : PoseCopy
     /// This one doesn't actually use the quaternion, just changes the buoyancies height based on this items
     /// height 
     /// </summary>
-    /// <param name="originalValue"></param>
-    public override void UpdateTarget(Quaternion originalValue)
+    public override void UpdateTarget()
     {
         print(this.transform.position.y / midDefaultHeight);
         midBuoyancy.DepthBeforeSubmerged = midBuoyancyHeightHold * (this.transform.localPosition.y / midDefaultHeight);

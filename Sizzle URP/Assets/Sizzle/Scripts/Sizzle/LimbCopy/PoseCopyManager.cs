@@ -62,7 +62,10 @@ public class PoseCopyManager : MonoBehaviour
     [SerializeField] List<PoseCopy> body;
     [SerializeField] List<PoseCopy> legs;
 
-    public PoseCopy midSegmenetCopy;
+
+    [SerializeField] LegsController lc;
+
+    public PoseCopy midSegmenetCopy; // Todo: find normal starting state for each ingame body and animated body
 
     private Animator animator;
     public AnimationClip clipTest;
@@ -85,43 +88,71 @@ public class PoseCopyManager : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        originalValuesBody = new Quaternion[body.Count];
-
-
-        for (int i = 0; i < body.Count; i++)
-        {
-            originalValuesBody[i] = body[i].TargetValue;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // THE BANDAID SOLUTION TO ANIMATION 
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("Base Layer." + clipTest.name);
             animator.Play(clipTest.name);
             StartCoroutine(PoseCopyAnimation(clipTest));
-        }
+        }*/
 
         for (int i = 0; i < body.Count; i++)
         {
-            body[i].UpdateTarget(originalValuesBody[i]);
+            body[i].UpdateTarget();
         }
     }
 
+    /// <summary>
+    /// Applies the animtaion of the pose copy skeleton the pose the pose copies
+    /// of the player body 
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <returns></returns>
     private IEnumerator PoseCopyAnimation(AnimationClip clip)
     {
         float timer = clip.length;
 
-        midSegmenetCopy.RotOffset += Vector3.right * 6.494f;
+        midSegmenetCopy.RotOffset += Vector3.right * 6.494f; // bandaid solution, see top
+
+        // Stop radoll body
+        foreach (PoseCopy bodyPart in body)
+        {
+            // HERE ********************************************************************** <<<<<
+        }
 
         while (timer >= 0)
         {
             timer -= Time.deltaTime;
             yield return null;
         }
+        midSegmenetCopy.RotOffset -= Vector3.right * 6.494f;  // bandaid solution, see top
 
-        midSegmenetCopy.RotOffset -= Vector3.right * 6.494f;
+        // Restart radoll body
+
+    }
+
+    private IEnumerator PoseCopyAnimationLegs(float time)
+    {
+        lc.Active = false;
+
+        //
+
+        float timer = time;
+        while(timer >= 0)
+        {
+            foreach (PoseCopy leg in legs)
+            {
+                leg.UpdateTarget();
+            }
+
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        lc.Active = true;
     }
 }

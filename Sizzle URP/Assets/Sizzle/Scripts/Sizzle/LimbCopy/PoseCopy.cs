@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PoseCopy : MonoBehaviour
+public class PoseCopy : MonoBehaviour
 {
     [Tooltip("What bone is being influnced by this object's direction")]
     [SerializeField] protected Transform boneTarget;
@@ -21,8 +21,7 @@ public abstract class PoseCopy : MonoBehaviour
     /// <summary>
     /// Sets the rotation of the target to this rotation 
     /// </summary>
-    /// <param name="originalValue"></param>
-    public virtual void UpdateTarget(Quaternion originalValue)
+    public virtual void UpdateTarget()
     {
         boneTarget.rotation = Quaternion.Inverse(this.transform.rotation);
     }
