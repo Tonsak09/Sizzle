@@ -243,7 +243,33 @@ public static class Maths
         };
     }
 
-    public static bool IsPointWithinRect(Vector3 point, Vector3[] rect, out bool test)
+    public static float[,] CrossProduct(float[,] A, float[,] B)
+    {
+
+        // Sizes do not match up
+        if(A.GetLength(1) == B.GetLength(0))
+        {
+            return new float[,] { { 0,0} };
+        }
+
+        float[,] P = new float[A.GetLength(0), B.GetLength(1)];
+        for (int i = 0; i < A.GetLength(1); i++)
+        {
+            for (int j = 0; j < B.GetLength(0); j++)
+            {
+                // Initializes the value 
+                P[i, j] = 0;
+                for (int k = 0; k < A.GetLength(0); k++)
+                {
+                    P[i, j] += A[i, k] * B[k, j];
+                }
+            }
+        }
+
+        return P;
+    }
+
+    public static bool IsPointWithinRect(Vector3 point, Vector3[] rect)
     {
         // Turns values into easier to use 2d vectors 
         Vector2 point2D = new Vector2(point.x, point.z);
@@ -259,24 +285,15 @@ public static class Maths
         // If the point is greater than side then it should be outta the line
         // Do twice to check both sides
 
-        Vector2 sideA = rect[0] - rect[1];
-        Vector2 sideB = rect[2] - rect[3];
+        Vector2 A = rect[0] - rect[1];
+        Vector2 B = rect[0] - rect[3];
 
-        Vector2 projA = Proj2D(point2D - rect2D[1], sideA);
-        Vector2 projB = Proj2D(point2D - rect2D[3], sideB);
+        float[,] matrix = { { A.x, A.y }, { B.x, B.y } };
+        InverseMatrix2x2(matrix);
 
-        float lerpA = projA.magnitude / sideA.magnitude; //InverseLerp(rect2D[0], rect2D[1], projA);
-        float lerpB = projB.magnitude / sideB.magnitude; //InverseLerp(rect2D[2], rect2D[3], projB);
+        float[,] P = CrossProduct(matrix, new float[,] { {point2D.x, point2D.y} } );
 
-        test = projA.normalized == sideA.normalized; // Test whether the projection unit vector is the same as the the side unit vector 
-        return ((lerpA <= 1 && lerpA >= 0) && (lerpB <= 1 && lerpB >= 0));
-
-
-
-        bool withinSideA = (projA.magnitude <= sideA.magnitude && projA.magnitude >= 0);
-        bool withinSideB = (projB.magnitude <= sideB.magnitude && projB.magnitude >= 0);
-
-        return withinSideA && withinSideB;
+        return (P[0, 0] <= 1) && (P[1, 0] <= 1);
     }
 
     public static float Lerp(float a, float b, float t)

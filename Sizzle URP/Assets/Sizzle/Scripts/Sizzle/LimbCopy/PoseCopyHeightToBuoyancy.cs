@@ -12,7 +12,7 @@ public class PoseCopyHeightToBuoyancy : PoseCopy
     // Start is called before the first frame update
     void Start()
     {
-        midBuoyancyHeightHold = midBuoyancy.DepthBeforeSubmerged;
+        midBuoyancyHeightHold = midBuoyancy.Height;
     }
 
     /// <summary>
@@ -22,6 +22,6 @@ public class PoseCopyHeightToBuoyancy : PoseCopy
     public override void UpdateTarget()
     {
         print(this.transform.position.y / midDefaultHeight);
-        midBuoyancy.DepthBeforeSubmerged = midBuoyancyHeightHold * (this.transform.localPosition.y / midDefaultHeight);
+        midBuoyancy.Height = midBuoyancyHeightHold * (this.transform.localPosition.y / midDefaultHeight);
     }
 }

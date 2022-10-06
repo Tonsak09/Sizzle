@@ -7,14 +7,16 @@ public class Buoyancy : MonoBehaviour
 
     [SerializeField] float maxBuoyancyForce;
     [SerializeField] float fallForce;
-    [SerializeField] float depthBeforeSubmerged;
+    [SerializeField] float height;
     //[SerializeField] float fallForce;
     [SerializeField] LayerMask layer;
     [SerializeField] AnimationCurve buoyancyForceCurve;
 
+    [SerializeField] Vector3 offset;
+
     private Rigidbody rb;
 
-    public float DepthBeforeSubmerged { get { return depthBeforeSubmerged; } set { depthBeforeSubmerged = value; } }
+    public float Height { get { return height; } set { height = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,7 @@ public class Buoyancy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // ADD force at position for multiple points!!!!
 
         //UpdateRayCheck();
     }
@@ -33,12 +35,12 @@ public class Buoyancy : MonoBehaviour
     private void FixedUpdate()
     {
         RaycastHit hit;
-        if (Physics.Raycast(this.transform.position, Vector3.down, out hit, depthBeforeSubmerged, layer))
+        if (Physics.Raycast(this.transform.position, Vector3.down, out hit, height, layer))
         {
             float disFromGround = Vector3.Distance(this.transform.position, hit.point);
-            float forceModifier = buoyancyForceCurve.Evaluate(1 - Mathf.Clamp01(disFromGround / depthBeforeSubmerged)) * maxBuoyancyForce;
+            float forceModifier = buoyancyForceCurve.Evaluate(1 - Mathf.Clamp01(disFromGround / height)) * maxBuoyancyForce;
             rb.AddForce(Vector3.up * forceModifier, ForceMode.Acceleration);
-        }    
+        }
         else
         {
             rb.AddForce(Vector3.down * fallForce, ForceMode.Acceleration);
@@ -68,6 +70,7 @@ public class Buoyancy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(this.transform.position, this.transform.position - Vector3.up * depthBeforeSubmerged);
+        Gizmos.DrawLine(this.transform.position, this.transform.position - Vector3.up * height);
+        Gizmos.DrawSphere(this.transform.position + offset, 0.01f);
     }
 }

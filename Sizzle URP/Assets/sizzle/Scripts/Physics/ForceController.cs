@@ -17,6 +17,8 @@ public class ForceController : MonoBehaviour
     [SerializeField] float torqueForceCrouch;
     [SerializeField] float crouchSpeed;
 
+    [SerializeField] Buoyancy buoyancy;
+
     private float crouchLerp;
 
     [Header("Dash")]
@@ -52,12 +54,10 @@ public class ForceController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        float VInput = Input.GetAxis("Vertical");
-        float hInput = Input.GetAxis("Horizontal");
-        float dash = Input.GetAxis("Jump");
-        print(dash);
 
-        print(Input.GetKey(dashKey));
+
+        AdjustOrientation();
+
         switch (SizzleState)
         {
             case states.movement:
@@ -99,6 +99,16 @@ public class ForceController : MonoBehaviour
 
         frontBody.AddTorque(torqueForce * frontBody.transform.up * hInput * Time.deltaTime, ForceMode.Acceleration);
         frontBody.AddForce(moveForce * frontBody.transform.forward * VInput * Time.deltaTime, ForceMode.Acceleration);
+    }
+
+    private void AdjustOrientation()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(frontBody.transform.position, Vector3.down, out hit, 5))
+        {
+            print(hit.point);
+            //frontBody.transform.up = hit.normal;
+        }
     }
 
     private void CrouchLogic()

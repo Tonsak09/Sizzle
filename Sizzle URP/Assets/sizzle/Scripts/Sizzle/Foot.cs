@@ -24,7 +24,6 @@ public class Foot : MonoBehaviour
 
         this.transform.forward = -hit.normal;
 
-        print(hit.normal);
 
     }
 }

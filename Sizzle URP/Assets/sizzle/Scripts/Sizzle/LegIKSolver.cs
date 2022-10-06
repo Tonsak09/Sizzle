@@ -96,6 +96,7 @@ public class LegIKSolver : MonoBehaviour
         } 
     }
 
+    private Rigidbody rb;
 
     // Info for moving the limb from one spot to next 
     private Vector3[] processedRangePlane;
@@ -113,6 +114,8 @@ public class LegIKSolver : MonoBehaviour
         //target = offsetedStart;
         lerp = 0;
         processedRangePlane = GetLocalizedRangePlane();
+
+        rb = forwardBone.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -146,6 +149,7 @@ public class LegIKSolver : MonoBehaviour
             //print(Maths.IsPointWithinRect(hit.point, processedRangePlane, out testValue) + ": " + this.gameObject.name);
             //print(testValue + ": " + this.gameObject.name);
 
+            //print(Maths.IsPointWithinRect(hit.point, processedRangePlane));
 
             // New position found 
 
@@ -180,7 +184,7 @@ public class LegIKSolver : MonoBehaviour
 
             end.position = footPos;
 
-            if (Input.GetKey(KeyCode.W)) // Moving forward 
+            if (rb.velocity.magnitude >= 0.5f) // Moving forward 
             {
                 lerp += Time.deltaTime * footSpeedMoving;
             }
@@ -268,7 +272,7 @@ public class LegIKSolver : MonoBehaviour
                 // Get direction as if root is parent 
                 Vector3 worldDir = forwardBone.TransformDirection(compassDirections[i]);
 
-                newCompass[i] = worldDir.normalized;
+                newCompass[i] = worldDir;
             }
             return newCompass;
         }
