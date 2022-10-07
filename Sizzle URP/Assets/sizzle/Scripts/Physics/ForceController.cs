@@ -16,8 +16,10 @@ public class ForceController : MonoBehaviour
     [SerializeField] float moveForceCrouch;
     [SerializeField] float torqueForceCrouch;
     [SerializeField] float crouchSpeed;
+    [SerializeField] float unCrouchSpeed;
+    [SerializeField] float minLerp;
 
-    [SerializeField] Buoyancy buoyancy;
+    [SerializeField] BuoyancyManager bManager;
 
     private float crouchLerp;
 
@@ -68,20 +70,24 @@ public class ForceController : MonoBehaviour
                     // Change to crouch state 
                     SizzleState = states.crouch;
                 }
+                else
+                {
+                    crouchLerp = Mathf.Clamp(crouchLerp + Time.deltaTime * unCrouchSpeed, minLerp, 1);
+                }
 
                 break;
             case states.crouch:
 
                 ForceControl(moveForceCrouch, torqueForceCrouch); // Slower Movement 
                 CrouchLogic();
+                TryDash(); // Checks whether the dash state should begin 
 
                 break;
             case states.dash:
                 break;
 
         }
-        TryDash(); // Checks whether the dash state should begin 
-
+        bManager.AdjustHeights(crouchLerp);
 
     }
 
@@ -115,7 +121,7 @@ public class ForceController : MonoBehaviour
     {
         if(Input.GetKey(crouchkey))
         {
-            crouchLerp += Time.deltaTime * crouchSpeed;
+            crouchLerp = Mathf.Clamp(crouchLerp - Time.deltaTime * crouchSpeed, minLerp, 1);
         }
         else if (Input.GetKeyUp(crouchkey))
         {
