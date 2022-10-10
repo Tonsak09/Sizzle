@@ -134,7 +134,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25726
+  m_Name: pb_Mesh34734
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -635,7 +635,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25998
+  m_Name: pb_Mesh35754
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -799,7 +799,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26054
+  m_Name: pb_Mesh36048
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -963,7 +963,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26038
+  m_Name: pb_Mesh35966
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2814,11 +2814,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: dashForceContinuous
-      value: 60
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: jumpForceContinuous
-      value: 50
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: minSqrtSpeedForDash
@@ -2854,7 +2854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: dashForceoverLerp.m_Curve.Array.data[1].inSlope
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: jumpForceOverLerp.m_Curve.Array.data[0].inSlope
@@ -2866,7 +2866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: dashForceoverLerp.m_Curve.Array.data[1].outSlope
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1536415208, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: jumpForceOverLerp.m_Curve.Array.data[0].outSlope
@@ -2893,6 +2893,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1288643249194728590, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularZMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643249194728590, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000018524006
       objectReference: {fileID: 0}
@@ -2912,6 +2916,14 @@ PrefabInstance:
       propertyPath: m_HighAngularXLimit.limit
       value: 55.669003
       objectReference: {fileID: 0}
+    - target: {fileID: 1288643249194728590, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularXDrive.positionSpring
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643249194728592, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularXMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1288643249194728592, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -0.00000020861594
@@ -2924,6 +2936,18 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.50275385
       objectReference: {fileID: 0}
+    - target: {fileID: 1288643249194728592, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_LowAngularXLimit.limit
+      value: -36.06551
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643249194728592, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_HighAngularXLimit.limit
+      value: 47.14979
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643249194728592, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularXDrive.positionSpring
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778522, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_Drag
       value: 2
@@ -2931,6 +2955,14 @@ PrefabInstance:
     - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_AngularXMotion
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularYMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularZMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2946,7 +2978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_AngularYLimit.limit
-      value: 177
+      value: 51.175385
       objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_AngularZLimit.limit
@@ -2960,6 +2992,10 @@ PrefabInstance:
       propertyPath: m_HighAngularXLimit.limit
       value: 72.58531
       objectReference: {fileID: 0}
+    - target: {fileID: 1288643249763778523, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularXDrive.positionSpring
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778524, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_Drag
       value: 5
@@ -2967,6 +3003,10 @@ PrefabInstance:
     - target: {fileID: 1288643249763778525, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_AngularXMotion
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643249763778525, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularYMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1288643249763778525, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2992,6 +3032,10 @@ PrefabInstance:
       propertyPath: m_HighAngularXLimit.limit
       value: 78.81675
       objectReference: {fileID: 0}
+    - target: {fileID: 1288643249763778525, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularXDrive.positionSpring
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1288643250059305403, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: maxLinearVel
       value: 4
@@ -3007,6 +3051,10 @@ PrefabInstance:
     - target: {fileID: 1288643250059305403, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: IKHintOffset.z
       value: -0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250059305403, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: MaxDisFromFloor
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1288643250059305403, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: maxMagnitudeOfCompass
@@ -3066,7 +3114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288643250091984816, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: MaxDisFromFloor
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1288643250091984816, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: maxMagnitudeOfCompass
@@ -3115,6 +3163,10 @@ PrefabInstance:
     - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: IKHintOffset.z
       value: -0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: MaxDisFromFloor
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1288643250232588780, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: maxMagnitudeOfCompass
@@ -3171,6 +3223,10 @@ PrefabInstance:
     - target: {fileID: 1288643250391003844, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: IKHintOffset.x
       value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288643250391003844, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: MaxDisFromFloor
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1288643250391003844, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: maxMagnitudeOfCompass
@@ -3252,6 +3308,38 @@ PrefabInstance:
       propertyPath: footSpeedMoving
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: frontDashTarget.x
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: frontDashTarget.y
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: frontDashTarget.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: feetToTargetCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: feetToTargetCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: feetToTargetCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: feetToTargetCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099600900075649835, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: feetToTargetCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2099600900075649836, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_Name
       value: Sizzle
@@ -3269,6 +3357,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309267884874668761, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularXMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309267884874668761, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000002682228
       objectReference: {fileID: 0}
@@ -3279,6 +3371,18 @@ PrefabInstance:
     - target: {fileID: 3309267884874668761, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.44578707
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309267884874668761, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_LowAngularXLimit.limit
+      value: -47.21777
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309267884874668761, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_HighAngularXLimit.limit
+      value: 44.743347
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309267884874668761, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: m_AngularXDrive.positionSpring
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4157397633548320490, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: rotOffset.x
@@ -3318,31 +3422,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450884251833034874, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: fallForce
-      value: 30
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450884251833034874, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
+      propertyPath: maxBuoyancyForce
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7450884251833034874, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: buoyancyForceCurve.m_Curve.Array.data[0].inSlope
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7450884251833034874, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: buoyancyForceCurve.m_Curve.Array.data[1].inSlope
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7450884251833034874, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: buoyancyForceCurve.m_Curve.Array.data[0].outSlope
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7450884251833034874, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: buoyancyForceCurve.m_Curve.Array.data[1].outSlope
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7450884251833034874, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: buoyancyForceCurve.m_Curve.Array.data[0].tangentMode
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 7450884251833034874, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: buoyancyForceCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 7450884251833034876, guid: 0bea6fe6e1de93443925ffa0428ac264, type: 3}
       propertyPath: m_Constraints
@@ -3369,7 +3477,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25908
+  m_Name: pb_Mesh35378
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3600,7 +3708,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26018
+  m_Name: pb_Mesh35830
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3764,7 +3872,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25858
+  m_Name: pb_Mesh35204
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3936,7 +4044,7 @@ GameObject:
   - component: {fileID: 468660567}
   - component: {fileID: 468660566}
   - component: {fileID: 468660565}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ColliderGeo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5659,7 +5767,7 @@ GameObject:
   - component: {fileID: 529867941}
   - component: {fileID: 529867942}
   - component: {fileID: 529867943}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spearine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6870,7 +6978,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25922
+  m_Name: pb_Mesh35408
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7128,7 +7236,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25834
+  m_Name: pb_Mesh35120
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13033,7 +13141,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25978
+  m_Name: pb_Mesh35602
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13202,7 +13310,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25752
+  m_Name: pb_Mesh34824
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13703,7 +13811,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25950
+  m_Name: pb_Mesh35504
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13870,7 +13978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1631653404}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15065,7 +15173,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25890
+  m_Name: pb_Mesh35340
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15239,7 +15347,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25670
+  m_Name: pb_Mesh34510
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15403,7 +15511,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25690
+  m_Name: pb_Mesh34612
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

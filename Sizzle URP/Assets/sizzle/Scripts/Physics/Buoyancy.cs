@@ -14,6 +14,9 @@ public class Buoyancy : MonoBehaviour
 
     [SerializeField] Vector3 offset;
 
+    [SerializeField] float disBeforeFalling;
+
+
     private Rigidbody rb;
 
     public float Height { get { return height; } set { height = value; } }
@@ -39,11 +42,14 @@ public class Buoyancy : MonoBehaviour
         {
             float disFromGround = Vector3.Distance(this.transform.position, hit.point);
             float forceModifier = buoyancyForceCurve.Evaluate(1 - Mathf.Clamp01(disFromGround / height)) * maxBuoyancyForce;
-            rb.AddForce(Vector3.up * forceModifier, ForceMode.Acceleration);
+            rb.AddForce(Vector3.up * forceModifier * Time.deltaTime, ForceMode.Acceleration);
         }
         else
         {
-            rb.AddForce(Vector3.down * fallForce, ForceMode.Acceleration);
+            if(Vector3.Distance(this.transform.position, hit.point) > disBeforeFalling)
+            {
+                rb.AddForce(Vector3.down * fallForce * Time.deltaTime, ForceMode.Acceleration);
+            }
         }
 
     }
@@ -70,6 +76,10 @@ public class Buoyancy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(this.transform.position, this.transform.position - Vector3.up * disBeforeFalling);
+
+        Gizmos.color = Color.white;
         Gizmos.DrawLine(this.transform.position, this.transform.position - Vector3.up * height);
         Gizmos.DrawSphere(this.transform.position + offset, 0.01f);
     }

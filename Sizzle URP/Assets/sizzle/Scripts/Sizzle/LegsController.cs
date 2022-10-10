@@ -17,92 +17,103 @@ public class LegsController : MonoBehaviour
     [Header("Values")]
     [SerializeField] float minlerpBeforePair;
 
-    //[Range(0, 1)]
-    //[SerializeField] float lerpToMoveOpposite;
+    [Header("Dashing")]
+    [SerializeField] Vector3 frontDashTarget;
+    [SerializeField] Vector3 backDashTarget;
+
+    [SerializeField] float minVel;
+    [SerializeField] float maxVel;
+    [SerializeField] AnimationCurve feetToTargetCurve;
+
+    private BodyAnimationManager animManager;
 
     private LegIKSolver[] frontPair;
     private LegIKSolver[] backPair;
+    private LegIKSolver[] allLegs;
+
+    private const string KEY = "LEGS";
+
 
     public bool Active { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
+        animManager = GameObject.FindObjectOfType<BodyAnimationManager>();
+
         frontPair = new LegIKSolver[] { frontLeft, frontRight };
         backPair = new LegIKSolver[] { backLeft, backRight };
 
-        /*
-        frontLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
-        backRight.TryMove(footSpeedMoving, footSpeedNotMoving);
-        backLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
-        frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);
-        */
-
-        StartCoroutine(LegUpdateCoroutine(frontPair));
-        StartCoroutine(LegUpdateCoroutine(backPair));
+        animManager.TryAnimation(WalkCycleCo(frontPair, backPair), KEY);
     }
 
-    private void Update()
+    public void Dash(Rigidbody body)
     {
-        //RunPair(frontPair, frontCurrent);
-        
-        /*frontLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
-        backRight.TryMove(footSpeedMoving, footSpeedNotMoving);
-        backLeft.TryMove(footSpeedMoving, footSpeedNotMoving);
-        frontRight.TryMove(footSpeedMoving, footSpeedNotMoving);*/
-
-
-        
+        animManager.TryAnimation(DashCo(body), KEY, true);
     }
 
-    /*private bool RunPair(LegIKSolver[] pair, bool current)
+    private IEnumerator DashCo(Rigidbody body)
     {
-        // Whether first or second in pair based on bool 
-        int i = current ? 1 : 0;
-        print(i);
-
-        // If primary is over a certain lerp secondary can begin 
-        if (pair[i].Lerp > lerpToMoveOpposite)
+        while(body.velocity.sqrMagnitude >= Mathf.Pow(minVel,2))
         {
-            pair[(i + 1) % 2].TryMove(footSpeedMoving, footSpeedNotMoving);
+
+
+            yield return null;
+        }
+    }
+
+
+    private IEnumerator WalkCycleCo(LegIKSolver[] front, LegIKSolver[] back)
+    {
+
+        if (!Active)
+        {
+            yield return null;
         }
 
-        return !pair[i].Moving;
-
-    }*/
-
-    public IEnumerator LegUpdateCoroutine(LegIKSolver[] pair)
-    {
         // Index 
         while (true)
         {
-            if (!Active)
-            {
-                yield return null;
-            }
-
-            // Find primary leg moving
-            if (pair[0].Moving && !pair[1].Moving)
-            {
-                if(pair[0].Lerp >= minlerpBeforePair)
-                {
-                    pair[1].TryMove(footSpeedMoving, footSpeedNotMoving);
-                }
-            }
-            if (!pair[0].Moving && pair[1].Moving)
-            {
-                if (pair[1].Lerp >= minlerpBeforePair)
-                {
-                    pair[0].TryMove(footSpeedMoving, footSpeedNotMoving);
-                }
-            }
-            if(!pair[0].Moving && !pair[1].Moving)
-            {
-                // If neither are moving try to move one randomly 
-                pair[Random.Range(0, 2)].TryMove(footSpeedMoving, footSpeedNotMoving);
-            }
+            RunPair(front);
+            RunPair(back);
 
             yield return null;
+        }
+    }
+
+    private void RunPair(LegIKSolver[] pair)
+    {
+        // Find primary leg moving
+        if (pair[0].Moving && !pair[1].Moving)
+        {
+            if (pair[0].Lerp >= minlerpBeforePair)
+            {
+                pair[1].TryMove(footSpeedMoving, footSpeedNotMoving);
+            }
+        }
+        if (!pair[0].Moving && pair[1].Moving)
+        {
+            if (pair[1].Lerp >= minlerpBeforePair)
+            {
+                pair[0].TryMove(footSpeedMoving, footSpeedNotMoving);
+            }
+        }
+        if (!pair[0].Moving && !pair[1].Moving)
+        {
+            // If neither are moving try to move one randomly 
+            pair[Random.Range(0, 2)].TryMove(footSpeedMoving, footSpeedNotMoving);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        foreach (LegIKSolver leg in frontPair)
+        {
+            Vector3 pos = leg.transform.TransformDirection(frontDashTarget);
+            Gizmos.DrawWireSphere(leg.transform.position + pos, 0.01f);
+
         }
     }
 }

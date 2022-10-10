@@ -36,4 +36,12 @@ public class BuoyancyManager : MonoBehaviour
             buoyancies[i].Height = startingHeights[i] * lerp;
         }
     }
+
+    public void ProjectHeights()
+    {
+        for (int i = 0; i < buoyancies.Length; i++)
+        {
+            buoyancies[i].Height = Vector3.Project(-buoyancies[i].transform.up * buoyancies[i].Height, Vector3.down).magnitude;
+        }
+    }
 }

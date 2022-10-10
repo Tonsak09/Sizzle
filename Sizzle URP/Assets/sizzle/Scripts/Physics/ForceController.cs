@@ -57,7 +57,6 @@ public class ForceController : MonoBehaviour
         action
     };
 
-    private Vector3 target;
 
     // Start is called before the first frame update
     void Start()
@@ -74,8 +73,9 @@ public class ForceController : MonoBehaviour
 
         AdjustOrientation();
         Statemachine();
-        bManager.AdjustHeights(crouchLerp);
 
+        bManager.AdjustHeights(crouchLerp);
+        bManager.ProjectHeights();
     }
 
     private void Statemachine()
@@ -184,7 +184,7 @@ public class ForceController : MonoBehaviour
                 break;
             }*/
 
-            frontBody.AddForce(dashForceContinuous * dashForceoverLerp.Evaluate((timer / dashTime)) * frontBody.transform.forward, ForceMode.Acceleration);
+            frontBody.AddForce(dashForceContinuous * dashForceoverLerp.Evaluate((timer / dashTime)) * frontBody.transform.forward * Time.deltaTime, ForceMode.Acceleration);
 
             timer -= Time.deltaTime;
             yield return null;
@@ -204,7 +204,7 @@ public class ForceController : MonoBehaviour
         while (timer >= 0)
         {
             // Jumps away from surface 
-            frontBody.AddForce(jumpForceContinuous * jumpForceOverLerp.Evaluate((timer / dashTime)) * dir, ForceMode.Acceleration);
+            frontBody.AddForce(jumpForceContinuous * jumpForceOverLerp.Evaluate((timer / dashTime)) * dir * Time.deltaTime, ForceMode.Acceleration);
 
             timer -= Time.deltaTime;
             yield return null;

@@ -108,6 +108,8 @@ public class LegIKSolver : MonoBehaviour
     public bool Moving { get { return moving; } }
     public float Lerp { get { return lerp; } }
 
+    public Vector3 Target { get { return end.position; } set { end.position = value; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -169,6 +171,7 @@ public class LegIKSolver : MonoBehaviour
         else
         {
             // Nothing to step down on 
+            
         }
     }
 
