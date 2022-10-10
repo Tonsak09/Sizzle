@@ -8,6 +8,7 @@ public class TorqueTowardsRotation : MonoBehaviour
     [SerializeField] Vector3 target;
     [SerializeField] float torque;
 
+    public Vector3 Target { get { return target; } set { target = value; } }
 
     private Rigidbody rb;
 

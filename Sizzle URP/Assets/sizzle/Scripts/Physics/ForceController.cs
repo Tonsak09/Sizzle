@@ -7,6 +7,9 @@ public class ForceController : MonoBehaviour
     [Header("References")]
     [SerializeField] Rigidbody frontBody;
 
+    [Header("Orientation")]
+    [SerializeField] TorqueTowardsRotation midBoneTorqueCorrection;
+
     [Header("Walking")]
     [SerializeField] float moveForce;
     [SerializeField] float torqueForce;
@@ -35,15 +38,26 @@ public class ForceController : MonoBehaviour
 
     private Coroutine DashCo;
 
+    [Header("Jump")]
+    [SerializeField] KeyCode jumpKey;
+    [SerializeField] float jumpForceImpulse;
+    [SerializeField] float jumpForceContinuous;
+    [SerializeField] float jumpTime;
 
-    private Vector3 target;
+    [SerializeField] AnimationCurve jumpForceOverLerp;
+
+    private Coroutine JumpCo;
+
+    [Space]
     [SerializeField] private states SizzleState;
     private enum states
     {
         movement,
         crouch,
-        dash
+        action
     };
+
+    private Vector3 target;
 
     // Start is called before the first frame update
     void Start()
@@ -59,13 +73,19 @@ public class ForceController : MonoBehaviour
 
 
         AdjustOrientation();
+        Statemachine();
+        bManager.AdjustHeights(crouchLerp);
 
+    }
+
+    private void Statemachine()
+    {
         switch (SizzleState)
         {
             case states.movement:
                 ForceControl(moveForce, torqueForce);
 
-                if(Input.GetKey(crouchkey))
+                if (Input.GetKey(crouchkey))
                 {
                     // Change to crouch state 
                     SizzleState = states.crouch;
@@ -74,21 +94,21 @@ public class ForceController : MonoBehaviour
                 {
                     crouchLerp = Mathf.Clamp(crouchLerp + Time.deltaTime * unCrouchSpeed, minLerp, 1);
                 }
+                TryDash(); // Checks whether the dash state should begin 
+
 
                 break;
             case states.crouch:
 
                 ForceControl(moveForceCrouch, torqueForceCrouch); // Slower Movement 
                 CrouchLogic();
-                TryDash(); // Checks whether the dash state should begin 
+                TryJump();
 
                 break;
-            case states.dash:
+            case states.action:
                 break;
 
         }
-        bManager.AdjustHeights(crouchLerp);
-
     }
 
     /// <summary>
@@ -113,7 +133,7 @@ public class ForceController : MonoBehaviour
         if (Physics.Raycast(frontBody.transform.position, Vector3.down, out hit, 5))
         {
             print(hit.point);
-            //frontBody.transform.up = hit.normal;
+            midBoneTorqueCorrection.Target = -hit.normal;
         }
     }
 
@@ -135,10 +155,21 @@ public class ForceController : MonoBehaviour
         // Activates the dash state 
         if (Input.GetKeyDown(dashKey) && DashCo == null)
         {
-            SizzleState = states.dash;
+            SizzleState = states.action;
             frontBody.AddForce(dashForceImpulse * frontBody.transform.forward, ForceMode.Impulse);
 
             DashCo = StartCoroutine(DashSubroutine());
+        }
+    }
+
+    private void TryJump()
+    {
+        if(Input.GetKeyDown(jumpKey) && JumpCo == null)
+        {
+            //SizzleState = states.action;
+            frontBody.AddForce(-midBoneTorqueCorrection.Target.normalized * jumpForceImpulse, ForceMode.Impulse);
+
+            JumpCo = StartCoroutine(JumpSubroutine(-midBoneTorqueCorrection.Target.normalized));
         }
     }
 
@@ -162,6 +193,26 @@ public class ForceController : MonoBehaviour
         SizzleState = states.movement;
         StopCoroutine(DashCo);
         DashCo = null;
+    }
+
+    private IEnumerator JumpSubroutine(Vector3 dir)
+    {
+
+        // Need to check if grounded 
+
+        float timer = jumpTime;
+        while (timer >= 0)
+        {
+            // Jumps away from surface 
+            frontBody.AddForce(jumpForceContinuous * jumpForceOverLerp.Evaluate((timer / dashTime)) * dir, ForceMode.Acceleration);
+
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        SizzleState = states.movement;
+        StopCoroutine(JumpCo);
+        JumpCo = null;
     }
 
 }
