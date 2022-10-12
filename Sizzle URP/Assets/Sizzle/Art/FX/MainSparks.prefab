@@ -9878,7 +9878,7 @@ GameObject:
   - component: {fileID: 5340475532836031236}
   - component: {fileID: 4420750905237980818}
   m_Layer: 0
-  m_Name: Sparks
+  m_Name: SparkTails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13852,7 +13852,7 @@ ParticleSystem:
   TrailModule:
     enabled: 1
     mode: 0
-    ratio: 1
+    ratio: 0.5
     lifetime:
       serializedVersion: 2
       minMaxState: 0
