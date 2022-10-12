@@ -6,6 +6,7 @@ public class ForceController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Rigidbody frontBody;
+    [SerializeField] LegsController legsController;
 
     [Header("Orientation")]
     [SerializeField] TorqueTowardsRotation midBoneTorqueCorrection;
@@ -36,6 +37,7 @@ public class ForceController : MonoBehaviour
 
     [SerializeField] AnimationCurve dashForceoverLerp;
 
+
     private Coroutine DashCo;
 
     [Header("Jump")]
@@ -50,7 +52,8 @@ public class ForceController : MonoBehaviour
 
     [Space]
     [SerializeField] private states SizzleState;
-    private enum states
+    public states CurrentSizzleState { get { return SizzleState; } }
+    public enum states
     {
         movement,
         crouch,
@@ -132,7 +135,6 @@ public class ForceController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(frontBody.transform.position, Vector3.down, out hit, 5))
         {
-            print(hit.point);
             midBoneTorqueCorrection.Target = -hit.normal;
         }
     }
@@ -157,6 +159,7 @@ public class ForceController : MonoBehaviour
         {
             SizzleState = states.action;
             frontBody.AddForce(dashForceImpulse * frontBody.transform.forward, ForceMode.Impulse);
+            legsController.Dash(frontBody); // Activates the dash leg animations 
 
             DashCo = StartCoroutine(DashSubroutine());
         }

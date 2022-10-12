@@ -102,13 +102,22 @@ public class LegIKSolver : MonoBehaviour
     private Vector3[] processedRangePlane;
     private Vector3 origin;
     private Vector3 target;
+    private Vector3 holdFloorTarget;
     private float lerp;
     private bool moving;
 
     public bool Moving { get { return moving; } }
     public float Lerp { get { return lerp; } }
 
+    /// <summary>
+    /// Get: Where the end of the leg is currently
+    /// Set: Set the position of the end of the leg 
+    /// </summary>
     public Vector3 Target { get { return end.position; } set { end.position = value; } }
+    /// <summary>
+    /// Get the raw raycast point that the leg would attempt to be
+    /// </summary>
+    public Vector3 HoldFloorTarget { get { return holdFloorTarget; } }
 
     // Start is called before the first frame update
     void Start()
@@ -161,6 +170,7 @@ public class LegIKSolver : MonoBehaviour
             {
                 lerp = 0;
                 target = hit.point + hit.normal * footOffset;
+                holdFloorTarget = hit.point + hit.normal * footOffset;
                 StartCoroutine(Move(footSpeedMoving, footSpeedNotMoving));
             }
             else

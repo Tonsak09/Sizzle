@@ -44,6 +44,8 @@ ScriptsOnlyBuild:
     - UnityEngine.Animations.Rigging.TwoBoneIKConstraint
     Unity.ProBuilder.Editor.dll:
     - UnityEditor.ProBuilder.ProBuilderEditor
+    - UnityEditor.ProBuilder.ProbuilderMoveTool
+    - UnityEditor.ProBuilder.ProbuilderRotateTool
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -1680,7 +1682,7 @@ ScriptsOnlyBuild:
     className: Entity
   - hash:
       serializedVersion: 2
-      Hash: 448315489f6bc67eb13dbbc54b08d867
+      Hash: 04152efe095c010ebe68f22dd58f4613
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Buoyancy
@@ -1698,7 +1700,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerBitField
   - hash:
       serializedVersion: 2
-      Hash: 257d805422597d7cbd7b9e730c1942a4
+      Hash: 0ab8b010f6d9146131301e3e02d6139e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ForceController
@@ -1968,7 +1970,7 @@ ScriptsOnlyBuild:
     className: CinemachineTrackedDolly
   - hash:
       serializedVersion: 2
-      Hash: b79cd27fb49a6986816fe4606d61777d
+      Hash: 572616f990971402825c20df11a85720
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LegsController
@@ -2203,4 +2205,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Sizzle/Scenes/GrayBox.unity
-  playerPath: C:/Users/ngr7989/Desktop/10-10 Build/Sizzle URP.exe
+  playerPath: C:/Users/ngr7989/Desktop/10-11/Sizzle URP.exe

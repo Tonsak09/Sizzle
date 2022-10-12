@@ -18,14 +18,18 @@ public class LegsController : MonoBehaviour
     [SerializeField] float minlerpBeforePair;
 
     [Header("Dashing")]
+    [SerializeField] LayerMask mask;
     [SerializeField] Vector3 frontDashTarget;
     [SerializeField] Vector3 backDashTarget;
+    [SerializeField] Vector3 frontSlowedTarget;
+    [SerializeField] Vector3 backSlowedTarget;
 
     [SerializeField] float minVel;
     [SerializeField] float maxVel;
     [SerializeField] AnimationCurve feetToTargetCurve;
 
     private BodyAnimationManager animManager;
+    private ForceController controller;
 
     private LegIKSolver[] frontPair;
     private LegIKSolver[] backPair;
@@ -40,6 +44,7 @@ public class LegsController : MonoBehaviour
     void Start()
     {
         animManager = GameObject.FindObjectOfType<BodyAnimationManager>();
+        controller = this.GetComponent<ForceController>();
 
         frontPair = new LegIKSolver[] { frontLeft, frontRight };
         backPair = new LegIKSolver[] { backLeft, backRight };
@@ -54,12 +59,21 @@ public class LegsController : MonoBehaviour
 
     private IEnumerator DashCo(Rigidbody body)
     {
-        while(body.velocity.sqrMagnitude >= Mathf.Pow(minVel,2))
+        // Only animates during aciton state 
+        while (controller.CurrentSizzleState == ForceController.states.action)
         {
+            float mag = body.velocity.magnitude;
 
+            // For each leg move target towards dashTarget
+            Vector3 frontPos = frontPair[0].transform.TransformDirection(frontDashTarget);
+            frontPair[0].Target = Vector3.Lerp(frontPair[0].HoldFloorTarget, frontPos, feetToTargetCurve.Evaluate(Mathf.InverseLerp(minVel, maxVel, mag)));
 
             yield return null;
         }
+
+        // Turn normal walking back on 
+        // True turns off this coroutine as well 
+        animManager.TryAnimation(WalkCycleCo(frontPair, backPair), KEY, true); 
     }
 
 
@@ -108,12 +122,13 @@ public class LegsController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-
-        foreach (LegIKSolver leg in frontPair)
+        if(Application.isPlaying)
         {
-            Vector3 pos = leg.transform.TransformDirection(frontDashTarget);
-            Gizmos.DrawWireSphere(leg.transform.position + pos, 0.01f);
+            Vector3 frontPos = frontPair[0].transform.TransformDirection(frontDashTarget);
+            Gizmos.DrawSphere(frontPair[0].transform.position + frontPos, 0.01f);
 
+            Gizmos.DrawSphere(frontPair[0].HoldFloorTarget, 0.1f);
         }
     }
+
 }
