@@ -121,14 +121,15 @@ public class LegsController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        // Visualization for dash details 
+        /*Gizmos.color = Color.blue;
         if(Application.isPlaying)
         {
             Vector3 frontPos = frontPair[0].transform.TransformDirection(frontDashTarget);
             Gizmos.DrawSphere(frontPair[0].transform.position + frontPos, 0.01f);
 
             Gizmos.DrawSphere(frontPair[0].HoldFloorTarget, 0.1f);
-        }
+        }*/
     }
 
 }

@@ -16,6 +16,8 @@ public class Buoyancy : MonoBehaviour
 
     [SerializeField] float disBeforeFalling;
 
+    [SerializeField] bool showGizmos;
+
 
     private Rigidbody rb;
     private bool addingBuoyancy;
@@ -80,11 +82,14 @@ public class Buoyancy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(this.transform.position, this.transform.position - Vector3.up * disBeforeFalling);
+        if(showGizmos)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(this.transform.position, this.transform.position - Vector3.up * disBeforeFalling);
 
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(this.transform.position, this.transform.position - Vector3.up * height);
-        Gizmos.DrawSphere(this.transform.position + offset, 0.01f);
+            Gizmos.color = Color.white;
+            Gizmos.DrawLine(this.transform.position, this.transform.position - Vector3.up * height);
+            Gizmos.DrawSphere(this.transform.position + offset, 0.01f);
+        }
     }
 }

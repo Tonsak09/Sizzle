@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6028576666699163763}
   - component: {fileID: 6028576666699163756}
   - component: {fileID: -3890985840244970806}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CheckSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

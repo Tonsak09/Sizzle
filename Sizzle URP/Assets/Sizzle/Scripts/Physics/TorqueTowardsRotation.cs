@@ -23,4 +23,10 @@ public class TorqueTowardsRotation : MonoBehaviour
     {
         rb.AddTorque(Vector3.Cross(target, this.transform.up) * torque);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(this.transform.position, this.transform.position - target * 0.5f);
+    }
 }

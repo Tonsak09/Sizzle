@@ -6,12 +6,20 @@ public class ForceController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Rigidbody frontBody;
+    [SerializeField] Transform neck;
     [SerializeField] LegsController legsController;
     [Tooltip("Used to get if grounded or not")]
     [SerializeField] Buoyancy midBodyBuoyancy;
 
     [Header("Orientation")]
     [SerializeField] TorqueTowardsRotation midBoneTorqueCorrection;
+    [Tooltip("This is the maximum distance that the correction vec can be from Vector3.down")]
+    [SerializeField] float maxVecDisFromDown;
+
+    [Header("Checks")]
+    [SerializeField] Vector3 frontCheckCenter;
+    [SerializeField] float frontCheckRadius;
+    [SerializeField] LayerMask checkMask;
 
     [Header("Walking")]
     [SerializeField] float moveForce;
@@ -33,6 +41,9 @@ public class ForceController : MonoBehaviour
     [SerializeField] KeyCode dashKey;
     [SerializeField] float dashForceImpulse;
     [SerializeField] float dashForceContinuous;
+    [Tooltip("When hitting an object before the dash ends Sizzle is set backwards")]
+    [SerializeField] float dashBounceBackImpulse;
+    [SerializeField] float dashBounceBackVertical;
     [SerializeField] float dashTime;
     [Tooltip("The minimum speed that Sizzle must maintain to stay in dash")]
     [SerializeField] float minSqrtSpeedForDash;
@@ -62,6 +73,7 @@ public class ForceController : MonoBehaviour
         action
     };
 
+    // This is decided by the main buoyancy, midBody
     private bool isGrounded;
 
 
@@ -131,6 +143,15 @@ public class ForceController : MonoBehaviour
         float hInput = Input.GetAxis("Horizontal");
 
         frontBody.AddTorque(torqueForce * frontBody.transform.up * hInput * Time.deltaTime, ForceMode.Acceleration);
+
+        if(VInput > 0)
+        {
+            if(!CanMoveForwad())
+            {
+                return;
+            }
+        }
+
         frontBody.AddForce(moveForce * frontBody.transform.forward * VInput * Time.deltaTime, ForceMode.Acceleration);
     }
 
@@ -139,10 +160,26 @@ public class ForceController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(frontBody.transform.position, Vector3.down, out hit, 5))
         {
-            midBoneTorqueCorrection.Target = -hit.normal;
+            // Get the distance between down and hit.normal 
+            float disSquared = (Vector3.up - hit.normal).sqrMagnitude;
+            print(disSquared);
+
+            if(disSquared <= maxVecDisFromDown)
+            {
+                midBoneTorqueCorrection.Target = -hit.normal;
+            }
+            else
+            {
+                // Get closest vector towards 
+
+                // Apply slide force 
+            }
         }
     }
 
+    /// <summary>
+    /// If Possible begins the crouch action 
+    /// </summary>
     private void CrouchLogic()
     {
         if(Input.GetKey(crouchkey))
@@ -155,6 +192,9 @@ public class ForceController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// If Possible begins the dash action 
+    /// </summary>
     private void TryDash()
     {
         
@@ -169,6 +209,9 @@ public class ForceController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// If Possible begins the jump action 
+    /// </summary>
     private void TryJump()
     {
         if(Input.GetKeyDown(jumpKey) && JumpCo == null && isGrounded)
@@ -179,6 +222,14 @@ public class ForceController : MonoBehaviour
             JumpCo = StartCoroutine(JumpSubroutine(-midBoneTorqueCorrection.Target.normalized));
         }
     }
+
+    private bool CanMoveForwad()
+    {
+        Vector3 pos = neck.TransformDirection(frontCheckCenter);
+        return !Physics.CheckSphere(neck.position + pos, frontCheckRadius, checkMask);
+    }
+
+
 
     private IEnumerator DashSubroutine()
     {
@@ -191,6 +242,13 @@ public class ForceController : MonoBehaviour
                 break;
             }*/
 
+            // Stopped by obstruction 
+            if(!CanMoveForwad())
+            {
+                frontBody.AddForce(-frontBody.transform.forward * dashBounceBackImpulse + Vector3.up * dashBounceBackVertical, ForceMode.Impulse);
+                break;
+            }
+
             frontBody.AddForce(dashForceContinuous * dashForceoverLerp.Evaluate((timer / dashTime)) * frontBody.transform.forward * Time.deltaTime, ForceMode.Acceleration);
 
             timer -= Time.deltaTime;
@@ -198,7 +256,10 @@ public class ForceController : MonoBehaviour
         }
 
         SizzleState = states.movement;
-        StopCoroutine(DashCo);
+        if(DashCo != null) // Can be null if breaks right away 
+        {
+            StopCoroutine(DashCo);
+        }
         DashCo = null;
     }
 
@@ -222,4 +283,11 @@ public class ForceController : MonoBehaviour
         JumpCo = null;
     }
 
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 pos = neck.TransformDirection(frontCheckCenter);
+        Gizmos.DrawWireSphere(neck.position + pos, frontCheckRadius);
+    }
 }
