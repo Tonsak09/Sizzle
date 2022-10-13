@@ -7,6 +7,8 @@ public class ForceController : MonoBehaviour
     [Header("References")]
     [SerializeField] Rigidbody frontBody;
     [SerializeField] LegsController legsController;
+    [Tooltip("Used to get if grounded or not")]
+    [SerializeField] Buoyancy midBodyBuoyancy;
 
     [Header("Orientation")]
     [SerializeField] TorqueTowardsRotation midBoneTorqueCorrection;
@@ -60,6 +62,8 @@ public class ForceController : MonoBehaviour
         action
     };
 
+    private bool isGrounded;
+
 
     // Start is called before the first frame update
     void Start()
@@ -70,9 +74,9 @@ public class ForceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
+        /*Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;*/
+        isGrounded = midBodyBuoyancy.AddingBuoyancy;
 
         AdjustOrientation();
         Statemachine();
@@ -155,7 +159,7 @@ public class ForceController : MonoBehaviour
     {
         
         // Activates the dash state 
-        if (Input.GetKeyDown(dashKey) && DashCo == null)
+        if (Input.GetKeyDown(dashKey) && DashCo == null && isGrounded)
         {
             SizzleState = states.action;
             frontBody.AddForce(dashForceImpulse * frontBody.transform.forward, ForceMode.Impulse);
@@ -167,7 +171,7 @@ public class ForceController : MonoBehaviour
 
     private void TryJump()
     {
-        if(Input.GetKeyDown(jumpKey) && JumpCo == null)
+        if(Input.GetKeyDown(jumpKey) && JumpCo == null && isGrounded)
         {
             //SizzleState = states.action;
             frontBody.AddForce(-midBoneTorqueCorrection.Target.normalized * jumpForceImpulse, ForceMode.Impulse);

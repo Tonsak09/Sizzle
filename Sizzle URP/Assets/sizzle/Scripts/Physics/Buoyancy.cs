@@ -18,8 +18,10 @@ public class Buoyancy : MonoBehaviour
 
 
     private Rigidbody rb;
+    private bool addingBuoyancy;
 
     public float Height { get { return height; } set { height = value; } }
+    public bool AddingBuoyancy {  get { return addingBuoyancy; } }
 
     // Start is called before the first frame update
     void Start()
@@ -43,12 +45,14 @@ public class Buoyancy : MonoBehaviour
             float disFromGround = Vector3.Distance(this.transform.position, hit.point);
             float forceModifier = buoyancyForceCurve.Evaluate(1 - Mathf.Clamp01(disFromGround / height)) * maxBuoyancyForce;
             rb.AddForce(Vector3.up * forceModifier * Time.deltaTime, ForceMode.Acceleration);
+            addingBuoyancy = true;
         }
         else
         {
             if(Vector3.Distance(this.transform.position, hit.point) > disBeforeFalling)
             {
                 rb.AddForce(Vector3.down * fallForce * Time.deltaTime, ForceMode.Acceleration);
+                addingBuoyancy = false;
             }
         }
 

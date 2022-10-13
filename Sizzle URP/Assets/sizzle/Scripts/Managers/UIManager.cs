@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     private float sensitivity;
     private float volume;
 
+    // Whether or not the screen is moving
     private bool moving;
     private Vector2 offScreen { get { return onScreen + Vector2.up * rt.rect.height; } }
     private Vector2 onScreen { get { return Vector2.zero; } }
@@ -39,6 +40,9 @@ public class UIManager : MonoBehaviour
         // Set position to proper position
         rt.anchoredPosition = offScreen;
         coloredBackground.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -60,10 +64,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Continue button that returns to game 
+    /// </summary>
     public void Continue()
     {
         if (rt.anchoredPosition != offScreen)
         {
+            Time.timeScale = 1;
             StartCoroutine(Dissapear());
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -75,6 +83,10 @@ public class UIManager : MonoBehaviour
         LevelManager.LoadScene(index);
     }
 
+    /// <summary>
+    /// Changes to a new screen that is passed 
+    /// </summary>
+    /// <param name="screen"></param>
     public void LoadScreen(GameObject screen)
     {
         currentScreen.SetActive(false);
@@ -84,6 +96,10 @@ public class UIManager : MonoBehaviour
 
         currentScreen.SetActive(true);
     }
+
+    /// <summary>
+    /// Function that closes the game 
+    /// </summary>
     public void Quit()
     {
         Application.Quit();
@@ -155,6 +171,7 @@ public class UIManager : MonoBehaviour
         }
 
         moving = false;
+        Time.timeScale = 0;
     }
 
     /// <summary>
