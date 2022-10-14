@@ -15,6 +15,7 @@ public class ForceController : MonoBehaviour
     [SerializeField] TorqueTowardsRotation midBoneTorqueCorrection;
     [Tooltip("This is the maximum distance that the correction vec can be from Vector3.down")]
     [SerializeField] float maxVecDisFromDown;
+    [SerializeField] float disBetweenChecks;
 
     [Header("Checks")]
     [SerializeField] Vector3 frontCheckCenter;
@@ -36,6 +37,7 @@ public class ForceController : MonoBehaviour
     [SerializeField] BuoyancyManager bManager;
 
     private float crouchLerp;
+    private float baseHeightLerp;
 
     [Header("Dash")]
     [SerializeField] KeyCode dashKey;
@@ -50,7 +52,6 @@ public class ForceController : MonoBehaviour
 
     [SerializeField] AnimationCurve dashForceoverLerp;
 
-
     private Coroutine DashCo;
 
     [Header("Jump")]
@@ -62,6 +63,9 @@ public class ForceController : MonoBehaviour
     [SerializeField] AnimationCurve jumpForceOverLerp;
 
     private Coroutine JumpCo;
+
+    [Header("Sliding")]
+    [SerializeField] float angleBeforeSlide;
 
     [Space]
     [SerializeField] private states SizzleState;
@@ -90,11 +94,11 @@ public class ForceController : MonoBehaviour
         Cursor.visible = false;*/
         isGrounded = midBodyBuoyancy.AddingBuoyancy;
 
-        AdjustOrientation();
+        SurfaceLogic();
         Statemachine();
 
-        bManager.AdjustHeights(crouchLerp);
-        bManager.ProjectHeights();
+        bManager.AdjustHeights(crouchLerp * baseHeightLerp);
+        //bManager.ProjectHeights();
     }
 
     private void Statemachine()
@@ -113,6 +117,9 @@ public class ForceController : MonoBehaviour
                 {
                     crouchLerp = Mathf.Clamp(crouchLerp + Time.deltaTime * unCrouchSpeed, minLerp, 1);
                 }
+
+                baseHeightLerp *= crouchLerp;
+
                 TryDash(); // Checks whether the dash state should begin 
 
 
@@ -155,14 +162,37 @@ public class ForceController : MonoBehaviour
         frontBody.AddForce(moveForce * frontBody.transform.forward * VInput * Time.deltaTime, ForceMode.Acceleration);
     }
 
-    private void AdjustOrientation()
+    private void SurfaceLogic()
     {
+
+        // Get average between two points 
+        RaycastHit hitA;
+        RaycastHit hitB;
+        if (Physics.Raycast(frontBody.transform.position + frontBody.transform.forward * (disBetweenChecks / 2), Vector3.down, out hitA, 5) && Physics.Raycast(frontBody.transform.position - frontBody.transform.forward * (disBetweenChecks / 2), Vector3.down, out hitB, 5))
+        {
+            // Average normal 
+            midBoneTorqueCorrection.Target = -(hitA.normal + hitB.normal).normalized;
+
+            // Height from ground should be the line formed by the two hit points 
+            Vector3 midPoint = Vector3.Lerp(hitA.point, hitB.point, 0.5f);
+
+            float totalDis = Mathf.Abs(frontBody.position.y - midPoint.y);
+            float b = totalDis - midBodyBuoyancy.startingHeight; // B value that needs to be eliminated 
+            float unitValueOfB = b / midBodyBuoyancy.startingHeight;
+
+            baseHeightLerp = (1 - unitValueOfB);
+
+            return;
+        }
+
+
+
         RaycastHit hit;
         if (Physics.Raycast(frontBody.transform.position, Vector3.down, out hit, 5))
         {
             // Get the distance between down and hit.normal 
             float disSquared = (Vector3.up - hit.normal).sqrMagnitude;
-            print(disSquared);
+            //print(Vector3.SignedAngle(Vector3.up, hit.normal, Vector3.up));
 
             if(disSquared <= maxVecDisFromDown)
             {
@@ -245,7 +275,8 @@ public class ForceController : MonoBehaviour
             // Stopped by obstruction 
             if(!CanMoveForwad())
             {
-                frontBody.AddForce(-frontBody.transform.forward * dashBounceBackImpulse + Vector3.up * dashBounceBackVertical, ForceMode.Impulse);
+                // Bounce back 
+                BounceBack();
                 break;
             }
 
@@ -261,6 +292,12 @@ public class ForceController : MonoBehaviour
             StopCoroutine(DashCo);
         }
         DashCo = null;
+    }
+
+    private void BounceBack()
+    {
+        frontBody.velocity = Vector3.zero; // Sets main part of body to 0
+        frontBody.AddForce(-frontBody.transform.forward * dashBounceBackImpulse + Vector3.up * dashBounceBackVertical, ForceMode.Impulse);
     }
 
     private IEnumerator JumpSubroutine(Vector3 dir)
@@ -289,5 +326,20 @@ public class ForceController : MonoBehaviour
         Gizmos.color = Color.red;
         Vector3 pos = neck.TransformDirection(frontCheckCenter);
         Gizmos.DrawWireSphere(neck.position + pos, frontCheckRadius);
+
+        Gizmos.DrawSphere(frontBody.transform.position + frontBody.transform.forward * (disBetweenChecks / 2), 0.01f);
+        Gizmos.DrawSphere(frontBody.transform.position - frontBody.transform.forward * (disBetweenChecks / 2), 0.01f);
+
+        RaycastHit hitA;
+        RaycastHit hitB;
+        if (Physics.Raycast(frontBody.transform.position + frontBody.transform.forward * (disBetweenChecks / 2), Vector3.down, out hitA, 5) && Physics.Raycast(frontBody.transform.position - frontBody.transform.forward * (disBetweenChecks / 2), Vector3.down, out hitB, 5))
+        {
+            Gizmos.DrawLine(hitA.point, hitB.point);
+
+
+            Gizmos.color = Color.yellow;
+            Vector3 midPoint = Vector3.Lerp(hitA.point, hitB.point, 0.5f);
+            Gizmos.DrawWireSphere(midPoint, 0.03f);
+        }
     }
 }

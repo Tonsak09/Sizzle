@@ -21,6 +21,7 @@ public class Buoyancy : MonoBehaviour
 
     private Rigidbody rb;
     private bool addingBuoyancy;
+    public float startingHeight { get; set; }
 
     public float Height { get { return height; } set { height = value; } }
     public bool AddingBuoyancy {  get { return addingBuoyancy; } }

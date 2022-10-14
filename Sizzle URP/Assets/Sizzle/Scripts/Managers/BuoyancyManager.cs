@@ -13,15 +13,11 @@ public class BuoyancyManager : MonoBehaviour
     [Tooltip("Used to reference the starting heights of Sizzle based on the model")]
     [SerializeField] Transform[] poseCopyBuoyancyPairs;
 
-    private float[] startingHeights;
-
     private void Start()
     {
-        startingHeights = new float[buoyancies.Length];
-
-        for (int i = 0; i < startingHeights.Length; i++)
+        for (int i = 0; i < buoyancies.Length; i++)
         {
-            startingHeights[i] = poseCopyBuoyancyPairs[i].position.y;
+            buoyancies[i].startingHeight = poseCopyBuoyancyPairs[i].localPosition.y;
         }
     }
 
@@ -33,10 +29,14 @@ public class BuoyancyManager : MonoBehaviour
     {
         for (int i = 0; i < buoyancies.Length; i++)
         {
-            buoyancies[i].Height = startingHeights[i] * lerp;
+            print("Adjusting height: " + buoyancies[i].startingHeight * lerp);
+            buoyancies[i].Height = buoyancies[i].startingHeight * lerp;
         }
     }
 
+    /// <summary>
+    /// Projects the height twoards the up normal of the buoyancy
+    /// </summary>
     public void ProjectHeights()
     {
         for (int i = 0; i < buoyancies.Length; i++)
