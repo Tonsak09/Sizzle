@@ -294,6 +294,9 @@ public class ForceController : MonoBehaviour
         DashCo = null;
     }
 
+    /// <summary>
+    /// Bounces Sizzle in the opposite direction that they are facing 
+    /// </summary>
     private void BounceBack()
     {
         frontBody.velocity = Vector3.zero; // Sets main part of body to 0

@@ -47,6 +47,10 @@ public class Sparks : MonoBehaviour
     private BodyAnimationManager animaManager;
     private SoundManager sm;
 
+    private List<Transform> sparksInWorld;
+
+    public List<Transform> SparksInWorld { get { return sparksInWorld; } }
+
     private void Start()
     {
         animaManager = this.GetComponent<BodyAnimationManager>();

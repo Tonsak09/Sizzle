@@ -29,7 +29,6 @@ public class BuoyancyManager : MonoBehaviour
     {
         for (int i = 0; i < buoyancies.Length; i++)
         {
-            print("Adjusting height: " + buoyancies[i].startingHeight * lerp);
             buoyancies[i].Height = buoyancies[i].startingHeight * lerp;
         }
     }

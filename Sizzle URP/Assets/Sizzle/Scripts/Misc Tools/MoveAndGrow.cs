@@ -41,5 +41,5 @@ public class MoveAndGrow : MonoBehaviour
     }
 
 
-    
+    // TODO REMOVE THIS AS THE DESTROYER 
 }

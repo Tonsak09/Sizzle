@@ -36,6 +36,7 @@ public class ChargeObj : MonoBehaviour
                 // Staying in the charge filed continues to add charge 
                 if(other.tag == "Slime")
                 {
+                    // Special case where slime gets moved as well 
                     ((Slime)objChargeable).AddCharge(chargeAmount * Time.deltaTime, (other.transform.position - this.transform.position).normalized);
                 }
                 else
