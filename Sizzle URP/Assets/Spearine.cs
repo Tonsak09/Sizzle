@@ -59,11 +59,11 @@ public class Spearine : MonoBehaviour
     void Update()
     {
         print(GetZone(player.position));
-
+        
         if(primaryTarget != null)
         {
-            Vector3 targetVec = Vector3.ProjectOnPlane(primaryTarget.position - this.transform.position, this.transform.up);
-            this.transform.forward = Vector3.RotateTowards(this.transform.forward, targetVec, alertTurnSpeed * Time.deltaTime, 0.0f);
+            Vector3 targetVec = Vector3.ProjectOnPlane(primaryTarget.position - rotationBone.transform.position, this.transform.up);
+            this.transform.forward = targetVec; //Vector3.RotateTowards(rotationBone.transform.up, targetVec, alertTurnSpeed * Time.deltaTime, 0.0f);
         }
         else
         {
