@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Sizzle/Scenes/ForrestBuildTesting.unity
+- path: Assets/Sizzle/Scenes/Caverns/Cavern1/Stories/Cavern1MM.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
