@@ -11,19 +11,19 @@ C:\Program Files\Unity\Hub\Editor\2021.1.15f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/ngr7989/Documents/GitHub/Sizzle/Sizzle URP
+C:/Users/fyl5702/Documents/GitHub/Sizzle/Sizzle URP
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-63788
-Successfully changed project path to: C:/Users/ngr7989/Documents/GitHub/Sizzle/Sizzle URP
-C:/Users/ngr7989/Documents/GitHub/Sizzle/Sizzle URP
+62392
+Successfully changed project path to: C:/Users/fyl5702/Documents/GitHub/Sizzle/Sizzle URP
+C:/Users/fyl5702/Documents/GitHub/Sizzle/Sizzle URP
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 130.90 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 115.46 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.1.15f1 (e767a7370072)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/ngr7989/Documents/GitHub/Sizzle/Sizzle URP/Assets
+[Subsystems] Discovering subsystems at path C:/Users/fyl5702/Documents/GitHub/Sizzle/Sizzle URP/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -35,39 +35,37 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56244
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56576
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002530 seconds.
+Registered in 0.002264 seconds.
 Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 122.02 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 107.79 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.375 seconds
+- Completed reload, in  1.148 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1375ms)
-		BeginReloadAssembly (59ms)
+	ReloadAssembly (1148ms)
+		BeginReloadAssembly (57ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (500ms)
-			LoadAssemblies (57ms)
+		EndReloadAssembly (485ms)
+			LoadAssemblies (53ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (170ms)
+			SetupTypeCache (166ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (29ms)
-			SetupLoadedEditorAssemblies (254ms)
+			SetupLoadedEditorAssemblies (238ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
+				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (122ms)
+				RefreshPlugins (108ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (96ms)
+				ProcessInitializeOnLoadAttributes (95ms)
 				ProcessInitializeOnLoadMethodAttributes (28ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
@@ -75,54 +73,53 @@ Domain Reload Profiling:
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.010482 seconds.
+Registered in 0.011396 seconds.
 Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image C:\Users\ngr7989\Documents\GitHub\Sizzle\Sizzle URP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image C:\Users\ngr7989\Documents\GitHub\Sizzle\Sizzle URP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\fyl5702\Documents\GitHub\Sizzle\Sizzle URP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\fyl5702\Documents\GitHub\Sizzle\Sizzle URP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 108.69 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 118.70 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.595 seconds
+- Completed reload, in  1.590 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1596ms)
+	ReloadAssembly (1590ms)
 		BeginReloadAssembly (143ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (23ms)
-		EndReloadAssembly (1391ms)
-			LoadAssemblies (102ms)
+		EndReloadAssembly (1386ms)
+			LoadAssemblies (139ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (415ms)
+			SetupTypeCache (386ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (63ms)
-			SetupLoadedEditorAssemblies (715ms)
+			RebuildScriptCaches (61ms)
+			SetupLoadedEditorAssemblies (701ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (109ms)
-				BeforeProcessingInitializeOnLoad (103ms)
-				ProcessInitializeOnLoadAttributes (486ms)
+				RefreshPlugins (119ms)
+				BeforeProcessingInitializeOnLoad (102ms)
+				ProcessInitializeOnLoadAttributes (462ms)
 				ProcessInitializeOnLoadMethodAttributes (5ms)
 				AfterProcessingInitializeOnLoad (7ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.10 seconds
-Refreshing native plugins compatible for Editor in 1.61 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 1.10 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5114 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 211.9 MB.
-System memory in use after: 209.5 MB.
+System memory in use before: 212.4 MB.
+System memory in use after: 210.0 MB.
 
-Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 5531.
-Total: 5.957200 ms (FindLiveObjects: 0.599500 ms CreateObjectMapping: 0.468800 ms MarkObjects: 3.687500 ms  DeleteObjects: 1.199600 ms)
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 5532.
+Total: 5.814500 ms (FindLiveObjects: 0.550800 ms CreateObjectMapping: 0.434600 ms MarkObjects: 3.637600 ms  DeleteObjects: 1.190200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -136,109 +133,7 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/Sizzle/Scenes/ForrestBuildTesting.unity
-  artifactKey: Guid(a8e6106266880f942921fb4862478ef6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Scenes/ForrestBuildTesting.unity using Guid(a8e6106266880f942921fb4862478ef6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0951b5fb5b2e66526004f269b0db4a91') in 0.016019 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000304 seconds.
-  path: Assets/Scenes
-  artifactKey: Guid(40fa837b5a042714da5c90e34e062462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes using Guid(40fa837b5a042714da5c90e34e062462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecba711f84fe0c0ae79225e1ab657494') in 0.002046 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1507.658258 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '560a560a997d5f6def5d2eabae018b28') in 0.238900 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 42.172913 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55fe10bd2c8258e689b6d8583af2aa92') in 0.009629 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 75.272600 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa384e11fe245c96c6eea28f9bcc469b') in 0.015947 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 4.459915 seconds.
-  path: Assets/Sizzle/Prefabs/Sizzle.prefab
-  artifactKey: Guid(0bea6fe6e1de93443925ffa0428ac264) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Prefabs/Sizzle.prefab using Guid(0bea6fe6e1de93443925ffa0428ac264) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '099c63e5910f2c79fcb85aeb32c84d19') in 0.125194 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 41.935542 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b47d1cbb9df7ca8fbc6de7e7c9dcda64') in 0.030252 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 23.721733 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd434bcc1370f8fa1986f6b3dd4c10a8') in 0.011357 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 25.642613 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50a4704728b624c0f1c42f511f00d1d8') in 0.011701 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 25.339909 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '803de792b0de7092b51d049da7d80e56') in 0.013726 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 48.873652 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '295f3def6f3b7435290ff6918b1e7ae7') in 0.010681 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 7.105198 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a51b8c3ced0b72f1637fddef8f73923e') in 0.010899 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 20.225635 seconds.
-  path: Assets/Sizzle/Art/Materials/NotMEojiy.mat
-  artifactKey: Guid(3bd04d5b3f4a3334daa87acc48216943) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/NotMEojiy.mat using Guid(3bd04d5b3f4a3334daa87acc48216943) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfbd4652b2bc37ef6a2b3e922d4bebc7') in 0.012056 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 36.194399 seconds.
-  path: Assets/Sizzle/Art/Materials/SnailForrest.mat
-  artifactKey: Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/SnailForrest.mat using Guid(e9c142865e2d6fc4385cba81d2d2abbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b632a159c40d6ad56d0c08b32daed41f') in 0.014748 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 37.671642 seconds.
-  path: Assets/Sizzle/Art/Materials/New Material.mat
-  artifactKey: Guid(2f67cb3668f215a4e89b9a942a1fc7c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/Materials/New Material.mat using Guid(2f67cb3668f215a4e89b9a942a1fc7c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36f4ea891e52178fc7b4ca1a747f754e') in 0.009013 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 280.652792 seconds.
-  path: Assets/TextMesh Pro/Sprites/EmojiOne.json
-  artifactKey: Guid(8f05276190cf498a8153f6cbe761d4e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Sprites/EmojiOne.json using Guid(8f05276190cf498a8153f6cbe761d4e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2c78af7e9aeef5be1f658b6fe865983') in 0.006649 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.335157 seconds.
-  path: Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt
-  artifactKey: Guid(381dcb09d5029d14897e55f98031fca5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt using Guid(381dcb09d5029d14897e55f98031fca5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62ab5da53cc25af01168d235c2950fa2') in 0.007722 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 15.592336 seconds.
-  path: Assets/Sizzle/Art/textures
-  artifactKey: Guid(0c9cbc53aec10f74a901641852293952) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sizzle/Art/textures using Guid(0c9cbc53aec10f74a901641852293952) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f6c23c32a84da7a0eaa8b15b6ac0145') in 0.002792 seconds 
+  path: Assets/Camera Blends.asset
+  artifactKey: Guid(240d5f6a32cf4fa41bd8e79cd9ca09a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Camera Blends.asset using Guid(240d5f6a32cf4fa41bd8e79cd9ca09a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b721af1e4b2f3db5dbceebbb582017a') in 0.039699 seconds 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
