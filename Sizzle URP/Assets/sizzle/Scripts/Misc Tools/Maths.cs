@@ -223,6 +223,7 @@ public static class Maths
         return Vector2.Dot(AV, AB) / Vector2.Dot(AB, AB);
     }
 
+
     public static Vector2 Proj2D(Vector2 u, Vector2 v)
     {
         return (Vector2.Dot(u, v) / (u.magnitude * v.magnitude)) * v;
