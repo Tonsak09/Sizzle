@@ -74,8 +74,8 @@ public class Spearine : MonoBehaviour
 
             float angleToTurn = turnCurve.Evaluate(lerp) * alertTurnSpeed;
 
-            Vector3 newDir = Vector3.RotateTowards(this.transform.forward, targetVec, angleToTurn * Time.deltaTime, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDir);
+            Vector3 newDir = Vector3.RotateTowards(rotationBone.transform.forward, targetVec, angleToTurn * Time.deltaTime, 0.0f);
+            rotationBone.transform.rotation = Quaternion.LookRotation(newDir);
             //torque.Target = -targetVec;
         }
         else
